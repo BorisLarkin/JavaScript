@@ -6,33 +6,33 @@
         <type>Накопительный</type>
     </head>
     <information>
-        <currency></currency>
-        <ownership_tax></ownership_tax>
-        <cashback></cashback>
-        <priveleges></priveleges>
+        <value>Рубль</currency>
+        <ownership_tax>0</ownership_tax>
+        <cashback>false</cashback>
+        <priveleges>true</priveleges>
     </information>
 </bank_account>
 <bank_account>
     <head>
         <title>Банковский счет "Покупательная способность"</title>
-        <type></type>
+        <type>Кредитный</type>
     </head>
     <information>
-        <currency></currency>
-        <ownership_tax></ownership_tax>
-        <cashback></cashback>
-        <priveleges></priveleges>
+        <currency>USD</currency>
+        <ownership_tax>2</ownership_tax>
+        <cashback>true</cashback>
+        <priveleges>false</priveleges>
     </information>
 </bank_account>
 <bank_account>
     <head>
         <title>Банковский счет "Зарплатный"</title>
-        <type></type>
+        <type>Накопительный</type>
     </head>
     <information>
-        <currency></currency>
-        <ownership_tax></ownership_tax>
-        <cashback></cashback>
-         <priveleges></priveleges>
+        <currency>USD</currency>
+        <ownership_tax>0</ownership_tax>
+        <cashback>true</cashback>
+        <priveleges>true</priveleges>
     </information>
 </bank_account>
