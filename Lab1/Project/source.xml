@@ -1,0 +1,38 @@
+<?pcml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE bank_account>
+<bank_account>
+    <head>
+        <title>Банковский счет "Льготный"</title>
+        <type>Накопительный</type>
+    </head>
+    <information>
+        <currency></currency>
+        <ownership_tax></ownership_tax>
+        <cashback></cashback>
+        <priveleges></priveleges>
+    </information>
+</bank_account>
+<bank_account>
+    <head>
+        <title>Банковский счет "Покупательная способность"</title>
+        <type></type>
+    </head>
+    <information>
+        <currency></currency>
+        <ownership_tax></ownership_tax>
+        <cashback></cashback>
+        <priveleges></priveleges>
+    </information>
+</bank_account>
+<bank_account>
+    <head>
+        <title>Банковский счет "Зарплатный"</title>
+        <type></type>
+    </head>
+    <information>
+        <currency></currency>
+        <ownership_tax></ownership_tax>
+        <cashback></cashback>
+         <priveleges></priveleges>
+    </information>
+</bank_account>
