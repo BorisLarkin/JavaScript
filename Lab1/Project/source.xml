@@ -4,35 +4,44 @@
     <head>
         <title>Банковский счет "Льготный"</title>
         <type>Накопительный</type>
-    </head>
-    <information>
-        <value>Рубль</currency>
-        <ownership_tax>0</ownership_tax>
+        <number>8274938</number>
+        <username>Брюшков Дмитрий Максимович</username>
+        <ownership_tax currency="Рубль" amount="120">false</ownership_tax>
         <cashback>false</cashback>
-        <priveleges>true</priveleges>
-    </information>
+        <open>true</open>
+    </head>
+    <account_valuespaces>
+        <value currency="Рубль" amount="3150">На рыбалку</value>
+        <value currency="Тенге" amount="12000">Для обхода блокировки Steam</value>
+    </account_valuespaces>
 </bank_account>
 <bank_account>
     <head>
         <title>Банковский счет "Покупательная способность"</title>
         <type>Кредитный</type>
-    </head>
-    <information>
-        <currency>USD</currency>
-        <ownership_tax>2</ownership_tax>
+        <number>9275839</number>
+        <username>Строкова Татьяна Вячеславовна</username>
+        <ownership_tax currency="Рубль" amount="120">true</ownership_tax>
         <cashback>true</cashback>
-        <priveleges>false</priveleges>
-    </information>
+        <open>true</open>
+    </head>
+    <account_valuespaces>
+        <value currency="Рубль" amount="14500">На шоппинг</value>
+        <value currency="Рубль" amount="22000">Продукты</value>
+    </account_valuespaces>
 </bank_account>
 <bank_account>
     <head>
         <title>Банковский счет "Зарплатный"</title>
         <type>Накопительный</type>
+        <number>1038563</number>
+        <username>Ларкин Борис Владимирович</username>
+        <ownership_tax currency="Рубль" amount="120">false</ownership_tax>
+        <cashback>false</cashback>
+        <open>true</open>
     </head>
-    <information>
-        <currency>USD</currency>
-        <ownership_tax>0</ownership_tax>
-        <cashback>true</cashback>
-        <priveleges>true</priveleges>
-    </information>
+    <account_valuespaces>
+        <value currency="USD" amount="32000">Заработная плата</value>
+        <value currency="Рубль" amount="47916">Пенсионные выплаты</value>
+    </account_valuespaces>
 </bank_account>
