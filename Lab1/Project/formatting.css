@@ -94,6 +94,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.top{
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .left{
   float:left;
   width:auto;
