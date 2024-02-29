@@ -36,7 +36,7 @@
   /* селектор для кнопок второстепенных операций */
   .my-btn.secondary { 
     background: #c7c7c7; /* цвет кнопки сервый */
-    font-weight: 400;
+    font-weight: 600;
   }
   .my-btn.secondary:hover { 
     background: #e9e7e7; /* цвет кнопки сервый */
@@ -59,7 +59,7 @@
     color: #ffffff;              /* цвет текста белый */
     font-size: 2rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     text-shadow: rgb(15, 15, 15) 1px 0 5px;
   }
 
@@ -69,4 +69,13 @@
 
   .shadow {
     text-shadow: rgb(15, 15, 15) 1px 0 10px;
+  }
+  .arial{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .parent {
+    display: grid;
+  }
+.child {
+    margin: auto;
   }

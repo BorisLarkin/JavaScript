@@ -7,21 +7,21 @@
 </head>
 
 <body class="body">
-  <div> <!-- div - это базовый html-контейнер, который может содержать в себе другие html-элементы. -->
+  <div class="parent"> <!-- div - это базовый html-контейнер, который может содержать в себе другие html-элементы. -->
     
     <!-- блок с экраном калькулятора, где будет выводиться результат вычислений. -->
-    <div id="result" class="result">
+    <div id="result" class="result child">
       0
     </div>
 
     <!-- блок с кнопками калькулятора. -->
-    <div>
+    <div class="child">
       <!--горизонтальный ряд из четырех кнопок-->
       <div>  
-        <button id="btn_op_clear" class="my-btn secondary shadow">C</button>    <!-- про тэг кнопки: https://www.w3schools.com/tags/tag_button.asp -->
-        <button id="btn_op_sign" class="my-btn secondary shadow">+/-</button>
-        <button id="btn_op_percent" class="my-btn secondary shadow">%</button>
-        <button id="btn_op_div" class="my-btn secondary shadow">/</button>
+        <button id="btn_op_clear" class="my-btn secondary shadow arial">C</button>
+        <button id="btn_op_sign" class="my-btn secondary shadow arial">+/-</button>
+        <button id="btn_op_percent" class="my-btn secondary shadow arial">%</button>
+        <button id="btn_op_div" class="my-btn secondary shadow arial">/</button>
       </div>
 
       <div>
