@@ -7,49 +7,58 @@
 </head>
 
 <body class="body">
-  <div class="parent"> <!-- div - это базовый html-контейнер, который может содержать в себе другие html-элементы. -->
-    
-    <!-- блок с экраном калькулятора, где будет выводиться результат вычислений. -->
-    <div id="result" class="result child">
-      0
+  <div>
+    <div class="calc_body"> <!-- div - это базовый html-контейнер, который может содержать в себе другие html-элементы. -->
+
+      <!-- блок с экраном калькулятора, где будет выводиться результат вычислений. -->
+      <div id="result" class="result">
+        0
+      </div>
+
+      <!-- блок с кнопками калькулятора. -->
+      <div>
+        <!--горизонтальный ряд из четырех кнопок-->
+        <div>  
+          <button id="btn_op_clear" class="my-btn secondary shadow arial">C</button>
+          <button id="btn_op_sign" class="my-btn secondary shadow arial">+/-</button>
+          <button id="btn_op_percent" class="my-btn secondary shadow arial">%</button>
+          <button id="btn_op_div" class="my-btn secondary shadow arial">/</button>
+        </div>
+
+        <div>
+          <button id="btn_digit_7" class="my-btn shadow">7</button>
+          <button id="btn_digit_8" class="my-btn shadow">8</button>
+          <button id="btn_digit_9" class="my-btn shadow">9</button>
+          <button id="btn_op_mult" class="my-btn primary shadow">x</button>
+        </div>
+
+        <div>
+          <button id="btn_digit_4" class="my-btn shadow">4</button>
+          <button id="btn_digit_5" class="my-btn shadow">5</button>
+          <button id="btn_digit_6" class="my-btn shadow">6</button>
+          <button id="btn_op_minus" class="my-btn primary shadow">-</button>
+        </div>
+
+        <div>
+          <button id="btn_digit_1" class="my-btn shadow">1</button>
+          <button id="btn_digit_2" class="my-btn shadow">2</button>
+          <button id="btn_digit_3" class="my-btn shadow">3</button>
+          <button id="btn_op_plus" class="my-btn primary shadow">+</button>
+        </div>
+
+        <div>
+          <button id="btn_digit_0" class="my-btn shadow">0</button>
+          <button id="btn_digit_dot" class="my-btn shadow">.</button>
+          <button id="btn_op_equal" class="my-btn primary execute shadow">=</button>
+        </div>
+      </div>
     </div>
-
-    <!-- блок с кнопками калькулятора. -->
-    <div class="child">
-      <!--горизонтальный ряд из четырех кнопок-->
-      <div>  
-        <button id="btn_op_clear" class="my-btn secondary shadow arial">C</button>
-        <button id="btn_op_sign" class="my-btn secondary shadow arial">+/-</button>
-        <button id="btn_op_percent" class="my-btn secondary shadow arial">%</button>
-        <button id="btn_op_div" class="my-btn secondary shadow arial">/</button>
-      </div>
-
-      <div>
-        <button id="btn_digit_7" class="my-btn shadow">7</button>
-        <button id="btn_digit_8" class="my-btn shadow">8</button>
-        <button id="btn_digit_9" class="my-btn shadow">9</button>
-        <button id="btn_op_mult" class="my-btn primary shadow">x</button>
-      </div>
-
-      <div>
-        <button id="btn_digit_4" class="my-btn shadow">4</button>
-        <button id="btn_digit_5" class="my-btn shadow">5</button>
-        <button id="btn_digit_6" class="my-btn shadow">6</button>
-        <button id="btn_op_minus" class="my-btn primary shadow">-</button>
-      </div>
-
-      <div>
-        <button id="btn_digit_1" class="my-btn shadow">1</button>
-        <button id="btn_digit_2" class="my-btn shadow">2</button>
-        <button id="btn_digit_3" class="my-btn shadow">3</button>
-        <button id="btn_op_plus" class="my-btn primary shadow">+</button>
-      </div>
-
-      <div>
-        <button id="btn_digit_0" class="my-btn shadow">0</button>
-        <button id="btn_digit_dot" class="my-btn shadow">.</button>
-        <button id="btn_op_equal" class="my-btn primary execute shadow">=</button>
-      </div>
+    <div class="textlayer bottom">
+      <div id="sign" class="sign">ЛР выполнена Ларкиным Борисом Владимировичем, ИУ5-41Б. 2024</div>
+    </div>
+    <div class="imglayer bottom">
+      <div id="GithubRef" class="GH">Перейти на GitHub автора</div>
+      <img src="giticon.png" class="GH" width="40" height="40">
     </div>
   </div>
 </body>
