@@ -50,7 +50,7 @@
   /* селектор для поля вывода результата */
   .result { 
     width: 218px;
-    height: 50px;
+    height: 75px;
     border-radius: 10px;
     margin-bottom: 10px;         /* отступ снизу */
     padding-right: 10px;         /* выступ справа */
@@ -107,4 +107,22 @@
 .right{
   float:right;
   width:auto;
+}
+.nightdayswitch{
+  cursor:pointer;
+  background-image: url("../Project/night_switch.png");
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-color: rgb(22,22,22);
+  background-size: 100% auto;
+  width: "140";
+  height: "70";
+}
+.nightdayswitch.day{
+  background-image: url("../Project/day_switch.png");
+  background-color: rgb(219, 196, 255);
+}
+.nightdayswitch.night{
+  background-image: url("../Project/night_switch.png");
+  background-color: rgb(22,22,22);
 }
