@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Калькулятор</title>
-  <link rel="stylesheet" href="formatting.css"> 
-  <link rek="calc_script" href="calc_script.js">
-  <link rek="mode_switchscript" href="mode_switch.js">
+  <link rel="stylesheet" href="formatting.css">
+  <script type="text/javascript" src="calc_script.js"></script>
 </head>
 
-<body class="body">
+<body id="body" class="body night">
   <div>
-    <div class="calc_body"> <!-- div - это базовый html-контейнер, который может содержать в себе другие html-элементы. -->
-
-      <!-- блок с экраном калькулятора, где будет выводиться результат вычислений. -->
-      <div id="result" class="result dark">
+    <div class="calc_body">
+      <div id="result" class="result night">
         0
       </div>
 
-      <!-- блок с кнопками калькулятора. -->
       <div>
-        <!--горизонтальный ряд из четырех кнопок-->
         <div>  
           <button id="btn_op_clear" class="my-btn secondary shadow arial">C</button>
           <button id="btn_op_sign" class="my-btn secondary shadow arial">+/-</button>
@@ -65,8 +59,11 @@
       </a>
     </div>
     <div class="infolayer top">
-      <button id="mode_switch" class="nightdayswitch night right" style="border-radius: 35px; height:70px; width: 140px; outline:none; outline-color:none; border: none;" onclick="light_switch()"></button>
+      <button id="mode_switch" class="nightdayswitch night right" style="border-radius: 35px; height:70px; width: 140px; outline:none; outline-color:none; border: none;"></button>
+    </div>
+    <div>
+      <button id="result_switch" class = "result_switch"></button>
     </div>
   </div>
 </body>
-</html>>
+</html>

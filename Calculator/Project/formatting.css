@@ -59,19 +59,48 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
     text-shadow: rgb(15, 15, 15) 1px 0 5px;
+    background: rgb(53, 53, 53);
+    color: #ffffff; 
   }
-  .result.dark{
-    background: rgb(53, 53, 53); /* цвет можно задавать и таким образом */
-    color: #ffffff;              /* цвет текста белый */
+  .result_switch{
+    cursor:pointer;
+    background-image: url("Group_3_pmgjbc.png");
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: 100% auto;
+    background-color: transparent;
+    outline-color:transparent;
+    outline-width: 0;
+    outline: none;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top:34.5%;
+    left:41%;
   }
-  .result.light{
-    background: rgb(255, 255, 255); /* цвет можно задавать и таким образом */
-    color: #000000;              /* цвет текста белый */
-    outline-color: #000000;
-    outline: 4px;
+  .result.night{
+    outline:none;
+    outline-width: 0px;
+    background: rgb(53, 53, 53);
+    color: #ffffff;
+    text-shadow: rgb(15, 15, 15) 1px 0 5px; 
+  }
+  .result.day{
+    outline:auto;
+    outline-color:#1f1f1f;
+    outline-width: 2px;
+    background: rgb(235, 235, 235);
+    color: black;
+    text-shadow: none;
   }
   .body {
-    background-color: rgb(22, 22, 22);
+    background: rgb(22, 22, 22);
+  }
+  .body.night{
+    background: rgb(22, 22, 22);
+  }
+  .body.day{
+    background: rgb(236, 223, 255);
   }
 
   .shadow {

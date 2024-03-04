@@ -86,5 +86,32 @@ window.onload = function(){
         selectedOperation = null
     
         outputElement.innerHTML = a
+        outputElement = document.getElementById("result")
+    }
+    sign = document.getElementById("sign")
+    document.getElementById("mode_switch").onclick = function (){
+        if (this.classList.contains("night")){
+            this.classList.add("day");
+            this.classList.remove("night");
+            document.body.style.background = "rgb(236, 223, 255)";
+            sign.style.color = "rgb(0, 0, 0)";
+        }
+        else{
+            this.classList.add("night");
+            this.classList.remove("day");
+            document.body.style.background = "rgb(22, 22, 22)";
+            sign.style.color = "rgb(255, 255, 255)";
+        }
+    };
+
+    document.getElementById("result_switch").onclick = function(){
+        if (outputElement.classList.contains("night")){
+            outputElement.classList.add("day");
+            outputElement.classList.remove("night");
+        }
+        else{
+            outputElement.classList.add("night");
+            outputElement.classList.remove("day");
+        }
     }
 };
