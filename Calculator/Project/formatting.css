@@ -54,15 +54,22 @@
     border-radius: 10px;
     margin-bottom: 10px;         /* отступ снизу */
     padding-right: 10px;         /* выступ справа */
-    background: rgb(53, 53, 53); /* цвет можно задавать и таким образом */
     text-align: right;           /* примагнитим текст к правой стороне */
-    color: #ffffff;              /* цвет текста белый */
     font-size: 2rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
     text-shadow: rgb(15, 15, 15) 1px 0 5px;
   }
-
+  .result.dark{
+    background: rgb(53, 53, 53); /* цвет можно задавать и таким образом */
+    color: #ffffff;              /* цвет текста белый */
+  }
+  .result.light{
+    background: rgb(255, 255, 255); /* цвет можно задавать и таким образом */
+    color: #000000;              /* цвет текста белый */
+    outline-color: #000000;
+    outline: 4px;
+  }
   .body {
     background-color: rgb(22, 22, 22);
   }

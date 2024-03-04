@@ -1,10 +1,11 @@
-$("#mode_switch").click(function() {
-    if ($("#mode_switch").classList.contains("night")){
-        $("#mode_switch").addClass('day');
-        $("#mode_switch").classList.remove("night");
+function light_switch(){
+    element = document.getElementById("mode_switch")
+    if (element.classList.contains("night")){
+        element.addClass('day');
+        element.classList.remove("night");
     }
     else{
-        $("#mode_switch").addClass('night');
-        $("#mode_switch").classList.remove("day");
+        element.addClass('night');
+        element.classList.remove("day");
     }
-  });
+};

@@ -4,6 +4,8 @@
 <head>
   <title>Калькулятор</title>
   <link rel="stylesheet" href="formatting.css"> 
+  <link rek="calc_script" href="calc_script.js">
+  <link rek="mode_switchscript" href="mode_switch.js">
 </head>
 
 <body class="body">
@@ -11,7 +13,7 @@
     <div class="calc_body"> <!-- div - это базовый html-контейнер, который может содержать в себе другие html-элементы. -->
 
       <!-- блок с экраном калькулятора, где будет выводиться результат вычислений. -->
-      <div id="result" class="result">
+      <div id="result" class="result dark">
         0
       </div>
 
@@ -63,23 +65,7 @@
       </a>
     </div>
     <div class="infolayer top">
-      <button id="mode_switch" class="nightdayswitch night right" style="border-radius: 35px; height:70px; width: 140px; outline:none; outline-color:none; border: none;"></button>
-      <script>
-        function change_mode(){
-          if ($("#mode_switch").classList.contains("night")){
-            $("#mode_switch").addClass('day');
-            $("#mode_switch").classList.remove("night");
-          }
-          else{
-            $("#mode_switch").addClass('night');
-            $("#mode_switch").classList.remove("day");
-          }
-        };
-        let btn = document.getElementById("mode_switch");
-        btn.addEventListener('click', event => {
-          change_mode();
-        });
-      </script>
+      <button id="mode_switch" class="nightdayswitch night right" style="border-radius: 35px; height:70px; width: 140px; outline:none; outline-color:none; border: none;" onclick="light_switch()"></button>
     </div>
   </div>
 </body>
