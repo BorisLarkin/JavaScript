@@ -32,18 +32,18 @@ window.onload = function(){
             const digitValue = button.innerHTML
             onDigitButtonClicked(digitValue)
         }
-    });
+    })
     
     // установка колбек-функций для кнопок операций
-    document.getElementById("btn_op_mult").onclick = function() { 
+    document.getElementById("btn_op_prim_mult").onclick = function() { 
         if (a === '') return
         selectedOperation = 'x'
     }
-    document.getElementById("btn_op_plus").onclick = function() { 
+    document.getElementById("btn_op_prim_plus").onclick = function() { 
         if (a === '') return
         selectedOperation = '+'
     }
-    document.getElementById("btn_op_minus").onclick = function() { 
+    document.getElementById("btn_op_prim_minus").onclick = function() { 
         if (a === '') return
         selectedOperation = '-'
     }
@@ -51,7 +51,6 @@ window.onload = function(){
         if (a === '') return
         selectedOperation = '/'
     }
-    
     // кнопка очищения
     document.getElementById("btn_op_clear").onclick = function() { 
         a = ''
@@ -62,7 +61,7 @@ window.onload = function(){
     }
     
     // кнопка расчёта результата
-    document.getElementById("btn_op_equal").onclick = function() { 
+    document.getElementById("btn_op_prim_equal").onclick = function() { 
         if (a === '' || b === '' || !selectedOperation)
             return
             
@@ -89,20 +88,24 @@ window.onload = function(){
         outputElement = document.getElementById("result")
     }
     sign = document.getElementById("sign")
+    primaryButtons = document.querySelectorAll('[id ^= "btn_op_prim_"]')
+    
     document.getElementById("mode_switch").onclick = function (){
         if (this.classList.contains("night")){
             this.classList.add("day");
             this.classList.remove("night");
             document.body.style.background = "rgb(236, 223, 255)";
             sign.style.color = "rgb(0, 0, 0)";
+            primaryButtons.forEach(button => {button.classList.remove("night"); button.classList.add("day");})
         }
         else{
             this.classList.add("night");
             this.classList.remove("day");
             document.body.style.background = "rgb(22, 22, 22)";
             sign.style.color = "rgb(255, 255, 255)";
+            primaryButtons.forEach(button => {button.classList.add("night"); button.classList.remove("day");})
         }
-    };
+    }
 
     document.getElementById("result_switch").onclick = function(){
         if (outputElement.classList.contains("night")){

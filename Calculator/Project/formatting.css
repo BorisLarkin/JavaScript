@@ -19,7 +19,7 @@
   .my-btn:hover {
     background: rgb(190, 190, 190); /* при наведение курсора на кнопку, она будет окрашена в серый */
   }
-  .my-btn.primary:hover{
+  .my-btn.primary.night:hover{
     background: #ff4d4d;
   }
   
@@ -29,8 +29,14 @@
   }
   
   /* селектор для кнопок первостепенных операций */
-  .my-btn.primary { 
-    background: #e20000; 
+  .my-btn.primary.night { 
+    background: #e20000;
+  }
+  .my-btn.primary.day{
+    background: #7227ff; 
+  }
+  .my-btn.primary.day:hover{
+    background: #a06dff; 
   }
   
   /* селектор для кнопок второстепенных операций */
@@ -69,13 +75,13 @@
     background-position: center center;
     background-size: 100% auto;
     background-color: transparent;
-    outline-color:transparent;
-    outline-width: 0;
     outline: none;
+    border: none;
+    box-shadow: none;
     width: 45px;
     height: 45px;
     position: absolute;
-    top:34.5%;
+    top: 33%;
     left:41%;
   }
   .result.night{
