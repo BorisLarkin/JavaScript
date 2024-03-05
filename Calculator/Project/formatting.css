@@ -99,16 +99,10 @@
     color: black;
     text-shadow: none;
   }
-  .body {
+  body {
     background: rgb(22, 22, 22);
   }
-  .body.night{
-    background: rgb(22, 22, 22);
-  }
-  .body.day{
-    background: rgb(236, 223, 255);
-  }
-
+  
   .shadow {
     text-shadow: rgb(15, 15, 15) 1px 0 10px;
   }
