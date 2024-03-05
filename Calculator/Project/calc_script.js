@@ -9,6 +9,14 @@ window.onload = function(){
     // окно вывода результата
     outputElement = document.getElementById("result")
     
+    outputElement.addEventListener("input", function () {
+        countLetters = this.innerHTML.length;
+        if (countLetters > 10) {
+            outputElement.innerHTML.toFixed(6);
+        }
+      });
+      
+    
     // список объектов кнопок циферблата (id которых начинается с btn_digit_)
     digitButtons = document.querySelectorAll('[id ^= "btn_digit_"]')
     
@@ -117,4 +125,5 @@ window.onload = function(){
             outputElement.classList.remove("day");
         }
     }
+    
 };

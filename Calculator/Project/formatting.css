@@ -33,10 +33,10 @@
     background: #e20000;
   }
   .my-btn.primary.day{
-    background: #7227ff; 
+    background: #6e39ff; 
   }
   .my-btn.primary.day:hover{
-    background: #a06dff; 
+    background: #8a62f8; 
   }
   
   /* селектор для кнопок второстепенных операций */
