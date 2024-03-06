@@ -10,6 +10,7 @@ window.onload = function(){
     outputElement = document.getElementById("result")
     
     outputElement.addEventListener("input", function () {
+        alert(0);
         countLetters = this.innerHTML.length;
         if (countLetters > 10) {
             outputElement.innerHTML.toFixed(6);
