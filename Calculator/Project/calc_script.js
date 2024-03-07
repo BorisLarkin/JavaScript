@@ -6,18 +6,34 @@ window.onload = function(){
     let expressionResult = ''
     let selectedOperation = null
     
+    function isInt(n) {
+        return n % 1 === 0;
+    }
+
     // окно вывода результата
     outputElement = document.getElementById("result")
     
-    outputElement.addEventListener("input", function () {
-        alert(0);
-        countLetters = this.innerHTML.length;
+    //func to round outputElement
+    observer = new MutationObserver(function(mutationsList, observer) {
+        if (!selectedOperation){num = a; }
+        else{num = b;}
+
+        countLetters = outputElement.innerHTML.toString().length;
         if (countLetters > 10) {
-            outputElement.innerHTML.toFixed(6);
+            if (isInt(num)){
+                outputElement.innerHTML = Math.round(num/(10**(num.toString().length-10)));
+            }
+            else{
+                fixedLength = (Math.trunc(num)).toString().length;
+                if (countLetters>11){
+                    outputElement.innerHTML = (Math.round(num*(10**(10-fixedLength))))/(10**(10-fixedLength));
+                }
+            }
         }
-      });
+    });
+    //Observe number change in OutputElement in order to round the number if necessary
+    observer.observe(outputElement, {characterData: false, childList: true, attributes: false});
       
-    
     // список объектов кнопок циферблата (id которых начинается с btn_digit_)
     digitButtons = document.querySelectorAll('[id ^= "btn_digit_"]')
     
@@ -89,14 +105,15 @@ window.onload = function(){
                 break;
         }
         
-        a = expressionResult.toString()
+        a = expressionResult
         b = ''
         selectedOperation = null
     
         outputElement.innerHTML = a
-        outputElement = document.getElementById("result")
     }
+
     sign = document.getElementById("sign")
+    
     primaryButtons = document.querySelectorAll('[id ^= "btn_op_prim_"]')
     
     document.getElementById("mode_switch").onclick = function (){
