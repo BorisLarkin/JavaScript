@@ -1,8 +1,8 @@
-import {ProductComponent} from "../../components/product/index.js";
+import {SubjectComponent} from "../../components/subject/index.js";
 import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
 
-export class ProductPage {
+export class SubjectPage {
     constructor(parent, id) {
         this.parent = parent
         this.id = id
@@ -43,7 +43,7 @@ export class ProductPage {
         backButton.render(this.clickBack.bind(this))
     
         const data = this.getData()
-        const stock = new ProductComponent(this.pageRoot)
+        const stock = new SubjectComponent(this.pageRoot)
         stock.render(data)
     }
 }
