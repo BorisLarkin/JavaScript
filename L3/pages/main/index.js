@@ -1,4 +1,5 @@
 import {ProductCardComponent} from "../../components/product-card/index.js";
+import {ProductPage} from "../product/index.js";
 
 export class MainPage{
     constructor(parent){
@@ -39,7 +40,13 @@ export class MainPage{
             },
         ]
     }
-        
+    clickCard(e) {
+        const cardId = e.target.dataset.id
+    
+        const productPage = new ProductPage(this.parent, cardId)
+        productPage.render()
+    }
+    
     render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
@@ -48,7 +55,7 @@ export class MainPage{
         const data = this.getData()
         data.forEach((item) => {
             const productCard = new ProductCardComponent(this.pageRoot)
-            productCard.render(item)
+            productCard.render(item, this.clickCard.bind(this))
         })
     }
 }
