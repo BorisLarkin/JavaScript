@@ -3,28 +3,19 @@ import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
 
 export class SubjectPage {
-    constructor(parent, id) {
+    constructor(parent, dataset) {
         this.parent = parent
-        this.id = id
-    }
-
-    getData() {
-        return {
-            id: 1,
-            src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-            title: `Акция ${this.id}`,
-            text: "Такой акции вы еще не видели"
-        }
+        this.dataset = dataset
     }
 
     get pageRoot() {
-        return document.getElementById('product-page')
+        return document.getElementById('subject-page')
     }
 
     getHTML() {
         return (
             `
-                <div id="product-page"></div>
+                <div id="subject-page"></div>
             `
         )
     }
@@ -42,8 +33,8 @@ export class SubjectPage {
         const backButton = new BackButtonComponent(this.pageRoot)
         backButton.render(this.clickBack.bind(this))
     
-        const data = this.getData()
-        const stock = new SubjectComponent(this.pageRoot)
-        stock.render(data)
+        const data = this.dataset
+        const subjectComponent = new SubjectComponent(this.pageRoot)
+        subjectComponent.render(data)
     }
 }
