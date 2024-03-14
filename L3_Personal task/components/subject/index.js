@@ -59,8 +59,8 @@ export class SubjectComponent {
                     <div class="row g-0">
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">Go crazy yeah</h5>
-                                <p class="card-text">Go stupid yeah</p>
+                                <h5 class="card-title">Go crazy yeah ${data.title}</h5>
+                                <p class="card-text">Go stupid yeah ${data.text}</p>
                             </div>
                         </div>
                     </div>

@@ -118,8 +118,7 @@ export class MainPage{
             }
         ]
     }
-    clickCard(e) {
-        const dataset = e.target.dataset.sub_page
+    clickCard(e, dataset) {
         const subjectPage = new SubjectPage(this.parent, dataset)
         subjectPage.render()
     }
@@ -132,7 +131,7 @@ export class MainPage{
         const data = this.getData()
         data.forEach((item) => {
             const subjectCard = new SubjectCardComponent(this.pageRoot)
-            subjectCard.render(item, this.clickCard.bind(this))
+            subjectCard.render(item, this.clickCard.bind(this, item.sub_page))
         })
     }
 }

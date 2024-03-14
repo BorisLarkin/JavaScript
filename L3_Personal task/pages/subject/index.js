@@ -33,8 +33,7 @@ export class SubjectPage {
         const backButton = new BackButtonComponent(this.pageRoot)
         backButton.render(this.clickBack.bind(this))
     
-        const data = this.dataset
         const subjectComponent = new SubjectComponent(this.pageRoot)
-        subjectComponent.render(data)
+        subjectComponent.render(this.dataset)
     }
 }
