@@ -130,7 +130,7 @@ export class MainPage{
         const data = this.getData()
         data.forEach((item) => {
             const subjectCard = new SubjectCardComponent(this.pageRoot)
-            const subjectPage = new SubjectPage(this.parent, item.sub_page)
+            const subjectPage = new SubjectPage(this.parent, item)
             subjectCard.render(item, this.clickCard.bind(this, subjectPage))
         })
     }
