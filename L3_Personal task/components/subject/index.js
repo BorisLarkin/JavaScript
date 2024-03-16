@@ -5,7 +5,7 @@ export class SubjectComponent {
     getHTML(data) {
         const result1 = 
         `
-                <div class="card mb-3" style="width: 540px;">
+                <div class="card mb-3" style="width: 1920px; height: 1000px">
                     <div class="row g-0">
                         <div class="col-md-8">
                             <div id="carousel-${data.id}" class="carousel slide carousel-fade" data-bs-ride="carousel">
