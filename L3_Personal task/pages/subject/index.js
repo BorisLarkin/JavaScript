@@ -15,7 +15,7 @@ export class SubjectPage {
     getHTML() {
         return (
             `
-                <div id="subject-page"></div>
+                <div id="subject-page" style="width:100%; height: 100%;"></div>
             `
         )
     }

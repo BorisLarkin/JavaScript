@@ -5,29 +5,34 @@ export class SubjectComponent {
     getHTML(data) {
         const result1 = 
         `
-                <div class="card mb-3" style="width: 1920px; height: 1000px">
-                    <div class="row g-0">
-                        <div class="col-md-8">
-                            <div id="carousel-${data.id}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div style="width: 50%; height: auto;">
+                    <div>
+                        <div style="width:200%; margin-top: 20px;">
+                            <div id="carousel-${data.id}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carousel-${data.id}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carousel-${data.id}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carousel-${data.id}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
                                 <div class="carousel-inner">
         `
         const result2 = 
         `
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${data.id}"  data-bs-slide="prev">
-                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                  <span class="visually-hidden">Предыдущий</span>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${data.id}" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
                                 </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-${data.id}"  data-bs-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                  <span class="visually-hidden">Следующий</span>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-${data.id}" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">${data.sub_page.title}</h5>
-                                <p class="card-text">${data.sub_page.text}</p>
+                        <div>
+                            <div>
+                                <h1 class="card-title" style="position: relative; left: 50%; text-align: center; margin-top: 20px;">${data.sub_page.title}</h1>
+                                <p class="card-text" style="position: relative; left: 50%; text-align: center;">${data.sub_page.text}</p>
                             </div>
                         </div>
                     </div>
@@ -42,22 +47,22 @@ export class SubjectComponent {
             content = 
             `
                                     <div class="carousel-item active">
-                                        <img src="${data.sub_page.src[0]}" class="d-block w-100">
+                                        <img class="d-block w-100" src="${data.sub_page.src[0]}" alt="Description" style="height: 500px; width: 100%; object-position: center; object-fit: cover;">
                                     </div>
             `
             for (var i = 1; i < len; i++)
             {
-                content.concat(
+                content = content +
+                (
                 `
                                     <div class="carousel-item">
-                                        <img src="${data.sub_page.src[i]}" class="d-block w-100">
+                                        <img class="d-block w-100" src="${data.sub_page.src[i]}" alt="Description" style="height: 500px; width: 100%; object-position: center; object-fit: cover;">
                                     </div>
                 `
                 )
             }
             
         }
-        
         return (result1+content+result2)
     }
     
