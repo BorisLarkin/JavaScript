@@ -1,6 +1,9 @@
 import {ProductComponent} from "../../components/product/index.js";
 import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
+import {ajax} from "../../modules/ajax.js";
+import {urls} from "../../modules/urls.js";
+import {groupId} from "../../modules/consts.js";
 
 export class ProductPage {
     constructor(parent, id) {
@@ -40,7 +43,7 @@ export class ProductPage {
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
-
+    
         const backButton = new BackButtonComponent(this.pageRoot)
         backButton.render(this.clickBack.bind(this))
         
