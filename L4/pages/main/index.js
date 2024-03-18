@@ -22,7 +22,7 @@ export class MainPage{
     }
         
     getData() {
-        ajax.post(urls.getGroupMembers(groupId), (data) => {
+        ajax.post(urls.getGroupMembers(groupId), data => {
             this.renderData(data.response.items)
         })
     }
@@ -44,7 +44,7 @@ export class MainPage{
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
-
+    
         this.getData()
     }
 }
