@@ -2,7 +2,7 @@ import {ProductCardComponent} from "../../components/product-card/index.js";
 import {ProductPage} from "../product/index.js";
 import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
-import {groupId} from "../../modules/consts.js";
+import {chat_1, groupId} from "../../modules/consts.js";
 
 export class MainPage{
     constructor(parent){
@@ -22,7 +22,7 @@ export class MainPage{
     }
         
     getData() {
-        ajax.post(urls.getGroupMembers(groupId), data => {
+        ajax.post(urls.getConversationMembers(chat_1), data => {
             this.renderData(data.response.items)
         })
     }

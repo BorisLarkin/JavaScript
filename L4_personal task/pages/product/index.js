@@ -19,7 +19,7 @@ export class ProductPage {
 
     renderData(item) {
         const product = new ProductComponent(this.pageRoot)
-        product.render(item[0])
+        product.render(item)
     }
 
     get pageRoot() {

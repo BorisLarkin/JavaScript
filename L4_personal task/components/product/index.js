@@ -14,6 +14,15 @@ export class ProductComponent {
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">${data.first_name} ${data.last_name}</h5>
+                                <p class="card-text">${data.about}</p>
+                                <p class="card-text">Пол: ${data.sex}</p>
+                                <p class="card-text">День рождения: ${data.bdate}</p>
+                                <p class="card-text">Страна: ${data.country}</p>
+                                <p class="card-text">Город: ${data.city}</p>
+                                <p class="card-text">Временной пояс: ${data.timezone}</p>
+                                <p class="card-text">Образование: ${data.educatuon}</p>
+                                <p class="card-text">Университет: ${data.universities}</p>
+                                <p class="card-text">Оккупация: ${data.occupation}</p>
                             </div>
                         </div>
                     </div>
@@ -27,3 +36,4 @@ export class ProductComponent {
         this.parent.insertAdjacentHTML('beforeend', html)
     }
 }
+//users.get?user_ids=ids?fields=about,sex,bdate, country,city,timezone, educatuon,universities,occupation

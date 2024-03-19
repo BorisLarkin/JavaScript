@@ -7,7 +7,7 @@ class Urls {
     }
 
     getUserInfo(userId) {
-        return `${this.url}/users.get?user_ids=${userId}&fields=photo_400_orig&${this.commonInfo}`
+        return `${this.url}/users.get?user_ids=${userId}&fields=photo_400_orig,about,sex,bdate,country,city,timezone,educatuon,universities,occupation&${this.commonInfo}`
     }
 
     getGroupMembers(groupId) {
@@ -15,7 +15,7 @@ class Urls {
     }
 
     getConversationMembers(peer_id){
-        return `${this.url}/messages.getConversationMembers?peer_id=${peer_id}&${this.commonInfo}`
+        return `${this.url}/messages.getConversationMembers?peer_id=${peer_id}&fields=photo_400_orig,id,first_name,last_name&${this.commonInfo}`
     }
 }
 
