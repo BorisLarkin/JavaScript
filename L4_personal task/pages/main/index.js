@@ -7,6 +7,7 @@ import {chat_1, groupId} from "../../modules/consts.js";
 export class MainPage{
     constructor(parent){
         this.parent=parent;
+        this.id;
     }
     
     get pageRoot() {
@@ -22,20 +23,22 @@ export class MainPage{
     }
         
     getData() {
-        ajax.post(urls.getConversationMembers(chat_1), (data) => {
-            this.getData(data.response.profiles)
+        ajax.post(urls.getConversationMembers(chat_1), data => {
+            this.renderData(data.response.profiles)
         })
     }
-   
-    clickCard(e) {
-        const cardId = e.target.dataset.id
-        const productPage = new ProductPage(this.parent, cardId)
-        productPage.render()
+
+    clickCard(prPage) {
+        prPage.render()
     }
 
-    renderData(data) {
-        const productCard = new ProductCardComponent(this.pageRoot)
-        productCard.render(data, this.clickCard.bind(this))
+    renderData(profiles) {
+        profiles.forEach((profile) => {
+            const productCard = new ProductCardComponent(this.pageRoot)
+            const productPage = new ProductPage(this.parent, profile.id)
+            productCard.render(profile, this.clickCard.bind(this, productPage))
+        }
+        )
     }
 
     render() {

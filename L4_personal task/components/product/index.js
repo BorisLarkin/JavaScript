@@ -1,9 +1,37 @@
+function in_dict(key,dict)
+{
+    return dict.hasOwnProperty(key);
+}
 export class ProductComponent {
     constructor(parent) {
         this.parent = parent
     }
 
     getHTML(data) {
+        var sx = ''
+        var bd = ''
+        var country = ''
+        var city = ''
+        var occ = ''
+        if (in_dict("sex", data)===true){
+            if (data.sex===2){
+                sx = "мужской"
+            }
+            else{
+                sx= "женский"
+            }
+        }
+        else {
+            sx = "не указан"
+        }
+        if (in_dict("country", data)===true){country = data.country.title}
+        else {country = "не указана"}
+        if (in_dict("bdate", data)===true){bd = data.bdate}
+        else {bd = "не указан"}
+        if (in_dict("city", data)===true){city = data.city.title}
+        else {city = "не указан"}
+        if (in_dict("occupation", data)===true){occ = data.occupation.name}
+        else {occ = "не указано"}
         return (
             `
                 <div class="card mb-3" style="width: 540px;">
@@ -14,15 +42,11 @@ export class ProductComponent {
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">${data.first_name} ${data.last_name}</h5>
-                                <p class="card-text">${data.about}</p>
-                                <p class="card-text">Пол: ${data.sex}</p>
-                                <p class="card-text">День рождения: ${data.bdate}</p>
-                                <p class="card-text">Страна: ${data.country}</p>
-                                <p class="card-text">Город: ${data.city}</p>
-                                <p class="card-text">Временной пояс: ${data.timezone}</p>
-                                <p class="card-text">Образование: ${data.educatuon}</p>
-                                <p class="card-text">Университет: ${data.universities}</p>
-                                <p class="card-text">Оккупация: ${data.occupation}</p>
+                                <p class="card-text">Пол: ${sx}</p>
+                                <p class="card-text">День рождения: ${bd}</p>
+                                <p class="card-text">Страна: ${country}</p>
+                                <p class="card-text">Город: ${city}</p>
+                                <p class="card-text">Занятие: ${occ}</p>
                             </div>
                         </div>
                     </div>

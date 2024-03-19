@@ -7,7 +7,7 @@ class Urls {
     }
 
     getUserInfo(userId) {
-        return `${this.url}/users.get?user_ids=${userId}&fields=photo_400_orig,about,sex,bdate,country,city,timezone,educatuon,universities,occupation&${this.commonInfo}`
+        return `${this.url}/users.get?user_ids=${userId}&fields=photo_400_orig,sex,bdate,country,city,occupation&${this.commonInfo}`
     }
 
     getConversationMembers(peerId) {
