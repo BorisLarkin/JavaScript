@@ -22,7 +22,12 @@ export class MainPage{
         return [
             {
                 id: 1,
-                src: "https://klike.net/uploads/posts/2023-08/1691036320_3-29.jpg",
+                //src: "https://klike.net/uploads/posts/2023-08/1691036320_3-29.jpg",
+                src: [
+                    "https://catherineasquithgallery.com/uploads/posts/2021-03/1614841544_52-p-fon-matematika-53.jpg",
+                    "https://catherineasquithgallery.com/uploads/posts/2021-03/1614841546_144-p-fon-matematika-185.jpg",
+                    "https://i.ytimg.com/vi/6p8GPSWCRYM/maxres3.jpg"
+                ],
                 title: "Математика",
                 text: "Курсы по математике для учеников старшей школы и студентов ВУЗов повышенного уровня сложности.",
                 sub_page: 
@@ -41,7 +46,12 @@ export class MainPage{
             },
             {
                 id: 2,
-                src: "https://tocrypto.ru/content/uploads/2021/10/18-2.jpg",
+                //src: "https://tocrypto.ru/content/uploads/2021/10/18-2.jpg",
+                src: [
+                    "https://webpulse.imgsmail.ru/imgpreview?key=pic9005333020248765267&mb=pulse",
+                    "https://mirkosmosa.ru/download/news/3/2936.jpg",
+                    "https://i.pinimg.com/originals/8a/17/35/8a1735d3a0dcb9aa8f8189aa621d3054.jpg"
+                ],
                 title: "Физика",
                 text: "Курсы по физике для учеников старшей школы, олимпиадников и студентов ВУЗов.",
                 sub_page: 
@@ -60,7 +70,12 @@ export class MainPage{
             },
             {
                 id: 3,
-                src: "https://kalix.club/uploads/posts/2022-12/1672269844_kalix-club-p-pattern-programmirovaniya-krasivo-2.jpg",
+                //src: "https://kalix.club/uploads/posts/2022-12/1672269844_kalix-club-p-pattern-programmirovaniya-krasivo-2.jpg",
+                src: [
+                    "https://static.mk.ru/upload/entities/2023/04/27/09/articles/facebookPicture/9f/36/22/03/6e165772cd72233003bdd3e955eac03c.jpg",
+                    "https://topsov.com/wp-content/uploads/2023/01/2-programmirovanie-mozhet-stat-osnovnym-istochnikom-dohoda.jpg",
+                    "https://infostart.ru/upload/iblock/208/208d58eb46233a558678f1ebedac2696.jpg"
+                ],
                 title: "Программирование",
                 text: "Курсы по программированию для учеников старшей школы, студентов ВУЗов, энтузиастов-программистов.",
                 sub_page: 
@@ -80,7 +95,12 @@ export class MainPage{
             },
             {
                 id: 4,
-                src: "https://www.seoclerk.com/pics/001/065/944/4679995c77c9c0ac1a6cb1736e1210d8.jpg",
+                //src: "https://www.seoclerk.com/pics/001/065/944/4679995c77c9c0ac1a6cb1736e1210d8.jpg",
+                src: [
+                    "https://vuzopedia.ru/storage/app/uploads/public/635/a2e/d44/635a2ed448287617707536.jpg",
+                    "https://www.holidaysmart.com/sites/default/files/daily/2020/europe-day-cv1500.jpg",
+                    "https://myrepublica.nagariknetwork.com/uploads/media/learning-a-foreign-language_20200229183138.jpg"
+                ],
                 title: "Иностранные языки",
                 text: "Курсы по иностраным языкам для сдачи ЕГЭ и международных экзаменов на B1-C1.",
                 sub_page: 
@@ -101,7 +121,12 @@ export class MainPage{
             },
             {
                 id: 5,
-                src: "https://cdn.culture.ru/images/c69448a5-9e88-5ce6-900e-b36c71d59ee2",
+                //src: "https://cdn.culture.ru/images/c69448a5-9e88-5ce6-900e-b36c71d59ee2",
+                src: [
+                    "https://proza.ru/pics/2023/10/12/1023.jpg",
+                    "https://s.mediasalt.ru/images/253/253949/original.jpg",
+                    "https://cdnstatic.rg.ru/uploads/images/2022/10/24/010_06b.jpg"
+                ],
                 title: "Русский язык",
                 text: "Курсы по русскому языку для учеников старшей школы и студентов ВУЗов.",
                 sub_page:
@@ -121,7 +146,12 @@ export class MainPage{
             },
             {
                 id: 6,
-                src: "https://eps.ieee.org/images/files/people_around_globe_blue.jpg",
+                //src: "https://eps.ieee.org/images/files/people_around_globe_blue.jpg",
+                src: [
+                    "https://foeksv.org/wp-content/uploads/2019/08/Slide1.jpg",
+                    "https://cdn.leverageedu.com/blog/wp-content/uploads/2020/02/05192316/Social-Science-Class-10-Syllabus-.png",
+                    "https://moodle.lensktekh.ru/pluginfile.php/5199/course/overviewfiles/shutterstock-247494325jpg-135e3c879010d745.jpg"
+                ],
                 title: "Социальные науки",
                 text: "Помощь и написание работ по общегуманитарным дисциплинам школьным и в ВУЗе.",
                 sub_page: 
