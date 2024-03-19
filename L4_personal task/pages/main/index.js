@@ -22,22 +22,20 @@ export class MainPage{
     }
         
     getData() {
-        ajax.post(urls.getConversationMembers(chat_1), data => {
-            this.renderData(data.response.items)
+        ajax.post(urls.getConversationMembers(chat_1), (data) => {
+            this.getData(data.response.profiles)
         })
     }
-    
+   
     clickCard(e) {
         const cardId = e.target.dataset.id
-    
         const productPage = new ProductPage(this.parent, cardId)
         productPage.render()
     }
-    renderData(items) {
-        items.forEach((item) => {
-            const productCard = new ProductCardComponent(this.pageRoot)
-            productCard.render(item, this.clickCard.bind(this))
-        })
+
+    renderData(data) {
+        const productCard = new ProductCardComponent(this.pageRoot)
+        productCard.render(data, this.clickCard.bind(this))
     }
 
     render() {

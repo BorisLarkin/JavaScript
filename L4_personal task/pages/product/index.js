@@ -3,7 +3,6 @@ import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
 import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
-import {groupId} from "../../modules/consts.js";
 
 export class ProductPage {
     constructor(parent, id) {
@@ -11,9 +10,9 @@ export class ProductPage {
         this.id = id
     }
 
-    getData() {
-        ajax.post(urls.getUserInfo(this.id), (data) => {
-            this.renderData(data.response)
+    getData(){
+        ajax.post(urls.getUserInfo(profile.id), (data) =>{
+            this.renderData(data)
         })
     }
 

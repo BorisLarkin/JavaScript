@@ -11,11 +11,7 @@ class Urls {
     }
 
     getGroupMembers(groupId) {
-        return `${this.url}/groups.getMembers?group_id=${groupId}&fields=photo_400_orig&${this.commonInfo}`
-    }
-
-    getConversationMembers(peer_id){
-        return `${this.url}/messages.getConversationMembers?peer_id=${peer_id}&${this.commonInfo}`
+        return `${this.url}/groups.getMembers?group_id=${groupId}&fields=photo_400_orig,country&${this.commonInfo}`
     }
 }
 

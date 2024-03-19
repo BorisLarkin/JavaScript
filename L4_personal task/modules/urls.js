@@ -10,12 +10,8 @@ class Urls {
         return `${this.url}/users.get?user_ids=${userId}&fields=photo_400_orig,about,sex,bdate,country,city,timezone,educatuon,universities,occupation&${this.commonInfo}`
     }
 
-    getGroupMembers(groupId) {
-        return `${this.url}/groups.getMembers?group_id=${groupId}&fields=photo_400_orig&${this.commonInfo}`
-    }
-
-    getConversationMembers(peer_id){
-        return `${this.url}/messages.getConversationMembers?peer_id=${peer_id}&fields=photo_400_orig,id,first_name,last_name&${this.commonInfo}`
+    getConversationMembers(peerId) {
+        return `${this.url}/messages.getConversationMembers?peer_id=${peerId}&fields=photo_400_orig&${this.commonInfo}`
     }
 }
 
