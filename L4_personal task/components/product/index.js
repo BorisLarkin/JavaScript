@@ -60,4 +60,3 @@ export class ProductComponent {
         this.parent.insertAdjacentHTML('beforeend', html)
     }
 }
-//users.get?user_ids=ids?fields=about,sex,bdate, country,city,timezone, educatuon,universities,occupation

@@ -4,6 +4,7 @@ import {MainPage} from "../main/index.js";
 import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
 
+
 export class ProductPage {
     constructor(parent, id) {
         this.parent = parent

@@ -2,7 +2,9 @@ import {ProductCardComponent} from "../../components/product-card/index.js";
 import {ProductPage} from "../product/index.js";
 import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
-import {chat_1, groupId} from "../../modules/consts.js";
+import { ChooseChatComponent } from "../../components/choose-chat/index.js";
+
+export var chat_chosen = 0
 
 export class MainPage{
     constructor(parent){
@@ -22,8 +24,8 @@ export class MainPage{
         )
     }
         
-    getData() {
-        ajax.post(urls.getConversationMembers(chat_1), data => {
+    getData(peer_id) {
+        ajax.post(urls.getConversationMembers(peer_id), data => {
             this.renderData(data.response.profiles)
         })
     }
@@ -40,12 +42,18 @@ export class MainPage{
         }
         )
     }
-
+    chatChosen() {
+        chat_chosen = document.getElementById("chat-sel").value
+        this.getData(chat_chosen)
+        this.render()
+    }
+    
     render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
-    
-        this.getData()
+
+        const chooseComp = new ChooseChatComponent(this.pageRoot,this)
+        chooseComp.render(this.chatChosen.bind(this))
     }
 }

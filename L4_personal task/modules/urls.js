@@ -1,4 +1,4 @@
-import {accessToken, version} from "./consts.js";
+import {accessToken, version, groupId} from "./consts.js";
 
 class Urls {
     constructor() {
@@ -12,6 +12,9 @@ class Urls {
 
     getConversationMembers(peerId) {
         return `${this.url}/messages.getConversationMembers?peer_id=${peerId}&fields=photo_400_orig&${this.commonInfo}`
+    }
+    getConvos(){
+        return `${this.url}/messages.getConversations?group_id=${groupId}&${this.commonInfo}`
     }
 }
 
