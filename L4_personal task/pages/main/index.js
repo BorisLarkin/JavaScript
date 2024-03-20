@@ -5,6 +5,7 @@ import {urls} from "../../modules/urls.js";
 import { ChooseChatComponent } from "../../components/choose-chat/index.js";
 
 export var chat_chosen = 0
+export var chosen_rendered=false
 
 export class MainPage{
     constructor(parent){
@@ -44,7 +45,10 @@ export class MainPage{
     }
     chatChosen() {
         chat_chosen = document.getElementById("chat-sel").value
-        this.getData(chat_chosen)
+        if (chosen_rendered){
+            this.getData(chat_chosen)
+            chat_chosen=false
+        }
         this.render()
     }
     
