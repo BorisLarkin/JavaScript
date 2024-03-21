@@ -16,6 +16,9 @@ class Urls {
     getConvos(){
         return `${this.url}/messages.getConversations?group_id=${groupId}&${this.commonInfo}`
     }
+    sendMessage(user_id){
+        return `${this.url}/messages.send?user_id=${user_id}&random_id=0&${this.commonInfo}`
+    }
 }
 
 export const urls = new Urls()

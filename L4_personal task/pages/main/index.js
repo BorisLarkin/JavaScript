@@ -25,7 +25,8 @@ export class MainPage{
         )
     }
         
-    getData(peer_id) {
+    getData(peer_id, chosen_rend) {
+        chosen_rendered = chosen_rend
         ajax.post(urls.getConversationMembers(peer_id), data => {
             this.renderData(data.response.profiles)
         })
@@ -46,8 +47,7 @@ export class MainPage{
     chatChosen() {
         chat_chosen = document.getElementById("chat-sel").value
         if (chosen_rendered){
-            this.getData(chat_chosen)
-            chat_chosen=false
+            this.getData(chat_chosen, false)
         }
         this.render()
     }

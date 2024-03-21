@@ -1,6 +1,6 @@
 import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
-import {chat_chosen, chosen_rendered} from "../../pages/main/index.js";
+import {chat_chosen} from "../../pages/main/index.js";
 
 export class ChooseChatComponent {
     constructor(parent, obj) {
@@ -47,8 +47,7 @@ export class ChooseChatComponent {
         this.addListeners(listener)
         if (chat_chosen!=0){
             document.getElementById("chat-sel").value = chat_chosen
-            this.parent_obj.getData(chat_chosen)
-            chosen_rendered=true
+            this.parent_obj.getData(chat_chosen, true)
         }
         
     }
