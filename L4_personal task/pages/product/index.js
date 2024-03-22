@@ -3,6 +3,7 @@ import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
 import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
+import { send_msg } from "../../components/send-msg/index.js";
 
 
 export class ProductPage {
@@ -42,11 +43,13 @@ export class ProductPage {
     render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
-        this.parent.insertAdjacentHTML('beforeend', html)
+        this.parent.insertAdjacentHTML('beforebegin', html)
     
         const backButton = new BackButtonComponent(this.pageRoot)
         backButton.render(this.clickBack.bind(this))
         
+        const msgbox = new send_msg(this.pageRoot, this.id)
+        msgbox.render()
         this.getData()
     }
 }
