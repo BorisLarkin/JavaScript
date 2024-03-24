@@ -1,8 +1,8 @@
 import {ProductCardComponent} from "../../components/product-card/index.js";
 import {ProductPage} from "../product/index.js";
 import {ajax} from "../../modules/ajax.js";
-import {fetch_obj} from "../../modules/fetch_logic.js";
 import {urls} from "../../modules/urls.js";
+import { fetch_obj } from "../../modules/fetch_logic.js";
 import { ChooseChatComponent } from "../../components/choose-chat/index.js";
 
 export var chat_chosen = 0
@@ -26,7 +26,8 @@ export class MainPage{
         )
     }
         
-    getData(peer_id) {
+    getData(peer_id, chosen_rend) {
+        chosen_rendered = chosen_rend
         const data = fetch_obj.get(urls.getConversationMembers(peer_id))
         this.renderData(data.response.profiles)
     }
@@ -46,8 +47,7 @@ export class MainPage{
     chatChosen() {
         chat_chosen = document.getElementById("chat-sel").value
         if (chosen_rendered){
-            this.getData(chat_chosen)
-            chat_chosen=false
+            this.getData(chat_chosen, false)
         }
         this.render()
     }

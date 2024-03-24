@@ -34,7 +34,7 @@ export class ProductComponent {
         else {occ = "не указано"}
         return (
             `
-                <div class="card mb-3" style="width: 540px;">
+                <div class="card mb-3" style="width: 540px; margin-top: 10px; margin-left: 10px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="${data.photo_400_orig}" class="img-fluid" alt="картинка">
@@ -57,6 +57,6 @@ export class ProductComponent {
 
     render(data) {
         const html = this.getHTML(data)
-        this.parent.insertAdjacentHTML('beforeend', html)
+        this.parent.insertAdjacentHTML('beforebegin', html)
     }
 }
