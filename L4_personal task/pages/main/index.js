@@ -4,13 +4,13 @@ import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
 import { ChooseChatComponent } from "../../components/choose-chat/index.js";
 
-export var chat_chosen = 0
-export var chosen_rendered=false
-
 export class MainPage{
     constructor(parent){
         this.parent=parent;
         this.id;
+        this.chat_chosen = 0
+        this.chosen_rendered=false
+
     }
     
     get pageRoot() {
@@ -25,11 +25,13 @@ export class MainPage{
         )
     }
         
-    getData(peer_id, chosen_rend) {
-        chosen_rendered = chosen_rend
+    getData(peer_id) {
+        if (this.chosen_rendered===true){this.chosen_rendered=false}
+        else{
         ajax.post(urls.getConversationMembers(peer_id), data => {
             this.renderData(data.response.profiles)
         })
+        }
     }
 
     clickCard(prPage) {
@@ -45,9 +47,9 @@ export class MainPage{
         )
     }
     chatChosen() {
-        chat_chosen = document.getElementById("chat-sel").value
-        if (chosen_rendered){
-            this.getData(chat_chosen, false)
+        this.chat_chosen = document.getElementById("chat-sel").value
+        if (this.chosen_rendered===false){
+            this.getData(this.chat_chosen)
         }
         this.render()
     }
