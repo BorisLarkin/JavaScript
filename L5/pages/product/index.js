@@ -15,7 +15,9 @@ export class ProductPage {
 
     getData(){
         const data = fetch_obj.get(urls.getUserInfo(this.id))
-        this.renderData(data.response[0])
+        .then((result)=>{
+            this.renderData(result.items[0])
+        })
     }
 
     renderData(item) {

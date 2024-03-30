@@ -1,9 +1,9 @@
 class Fetch {
-  get = async (url) => {
+  get = async(url) =>{
     try {
-      const response = await fetch(url, 'POST');
-      const result = response.json();
-      return result;
+      let resp = await fetch(url);
+      let result = await resp.json();
+      return result.response;
     } catch (error) {
       return 0;
     }

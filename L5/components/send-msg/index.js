@@ -26,7 +26,7 @@ export class send_msg {
     ClickSend(){
         const body = document.getElementById("messagebox").value
         fetch_obj.get(urls.sendMessage(this.user_id, body))
-        .finally(alert("Завершено"))
+        .then(alert("Завершено"))
     }
 
     render() {

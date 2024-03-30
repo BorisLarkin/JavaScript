@@ -28,8 +28,10 @@ export class MainPage{
         
     getData(peer_id, chosen_rend) {
         chosen_rendered = chosen_rend
-        const data = fetch_obj.get(urls.getConversationMembers(peer_id))
-        this.renderData(data.response.profiles)
+        fetch_obj.get(urls.getConversationMembers(peer_id))
+        .then((result)=>{
+            this.renderData(result.profiles)
+        })
     }
 
     clickCard(prPage) {

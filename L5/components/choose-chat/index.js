@@ -14,9 +14,9 @@ export class ChooseChatComponent {
     }
 
     getData(listener){
-        const data = fetch_obj.get(urls.getConvos())
-        data.then(()=>
-            this.renderData(data.response.items, listener)
+        fetch_obj.get(urls.getConvos())
+        .then((result)=>
+            this.renderData(result.items, listener)
         )
     }
 
