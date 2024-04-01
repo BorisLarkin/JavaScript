@@ -36,6 +36,7 @@ export class ProductPage {
     }
 
     clickBack() {
+        document.getElementById("product-page").innerHTML = ''
         const mainPage = new MainPage(this.parent)
         mainPage.render()
     }
@@ -43,7 +44,7 @@ export class ProductPage {
     render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
-        this.parent.insertAdjacentHTML('beforebegin', html)
+        this.parent.insertAdjacentHTML('beforeend', html)
     
         const backButton = new BackButtonComponent(this.pageRoot)
         backButton.render(this.clickBack.bind(this))

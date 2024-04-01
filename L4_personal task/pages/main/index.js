@@ -46,12 +46,13 @@ export class MainPage{
         }
         )
     }
+
     chatChosen() {
         this.chat_chosen = document.getElementById("chat-sel").value
+        document.getElementById("main-page").innerHTML = ''
         if (this.chosen_rendered===false){
             this.getData(this.chat_chosen)
         }
-        this.render()
     }
     
     render() {

@@ -49,7 +49,6 @@ export class ChooseChatComponent {
             this.parent.chosen_rendered = true
             this.parent_obj.getData(chat_chosen)
         }
-        
     }
     render(listener) {
         this.getData(listener)
