@@ -7,9 +7,10 @@ import { send_msg } from "../../components/send-msg/index.js";
 
 
 export class ProductPage {
-    constructor(parent, id) {
+    constructor(parent, id, parent_obj) {
         this.parent = parent
         this.id = id
+        this.parent_obj=parent_obj
     }
 
     getData(){
@@ -38,6 +39,7 @@ export class ProductPage {
     clickBack() {
         document.getElementById("product-page").innerHTML = ''
         const mainPage = new MainPage(this.parent)
+        mainPage.chat_chosen = this.parent_obj.chat_chosen
         mainPage.render()
     }
     
