@@ -45,10 +45,9 @@ export class ChooseChatComponent {
         const html = this.getHTML(data)
         this.parent.insertAdjacentHTML('beforebegin', html)
         this.addListeners(listener)
-        if (this.parent.chosen_rendered===false){
-            document.getElementById("chat-sel").value = chat_chosen
-            this.parent.chosen_rendered = true
-            this.parent_obj.getData(chat_chosen)
+        if (this.parent_obj.chat_chosen!=0){
+            document.getElementById("chat-sel").value = this.parent_obj.chat_chosen
+            this.parent_obj.getData(this.parent_obj.chat_chosen)
         }
     }
     render(listener) {

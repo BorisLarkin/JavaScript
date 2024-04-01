@@ -9,8 +9,6 @@ export class MainPage{
         this.parent=parent;
         this.id;
         this.chat_chosen = 0
-        this.chosen_rendered=false
-
     }
     
     get pageRoot() {
@@ -25,10 +23,10 @@ export class MainPage{
         )
     }
         
-    getData(peer_id) {
-        if (this.chosen_rendered===true){this.chosen_rendered=false}
-        else{
-            fetch_obj.get(urls.getConversationMembers(peer_id))
+    getData() {
+        if (this.chat_chosen!=0)
+        {
+            fetch_obj.get(urls.getConversationMembers(this.chat_chosen))
             .then((result)=>{
                 this.renderData(result.profiles)
             })
@@ -43,7 +41,7 @@ export class MainPage{
     renderData(profiles) {
         profiles.forEach((profile) => {
             const productCard = new ProductCardComponent(this.pageRoot)
-            const productPage = new ProductPage(this.parent, profile.id)
+            const productPage = new ProductPage(this.parent, profile.id, this)
             productCard.render(profile, this.clickCard.bind(this, productPage))
         }
         )
@@ -52,9 +50,7 @@ export class MainPage{
     chatChosen() {
         this.chat_chosen = document.getElementById("chat-sel").value
         document.getElementById("main-page").innerHTML = ''
-        if (this.chosen_rendered===false){
-            this.getData(this.chat_chosen)
-        }
+        this.getData()
     }
     
     render() {
