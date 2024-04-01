@@ -1,17 +1,16 @@
 import {ProductCardComponent} from "../../components/product-card/index.js";
 import {ProductPage} from "../product/index.js";
-import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
 import { fetch_obj } from "../../modules/fetch_logic.js";
 import { ChooseChatComponent } from "../../components/choose-chat/index.js";
-
-export var chat_chosen = 0
-export var chosen_rendered=false
 
 export class MainPage{
     constructor(parent){
         this.parent=parent;
         this.id;
+        this.chat_chosen = 0
+        this.chosen_rendered=false
+
     }
     
     get pageRoot() {
@@ -26,13 +25,16 @@ export class MainPage{
         )
     }
         
-    getData(peer_id, chosen_rend) {
-        chosen_rendered = chosen_rend
-        fetch_obj.get(urls.getConversationMembers(peer_id))
-        .then((result)=>{
-            this.renderData(result.profiles)
-        })
+    getData(peer_id) {
+        if (this.chosen_rendered===true){this.chosen_rendered=false}
+        else{
+            fetch_obj.get(urls.getConversationMembers(peer_id))
+            .then((result)=>{
+                this.renderData(result.profiles)
+            })
+        }
     }
+    
 
     clickCard(prPage) {
         prPage.render()
@@ -46,12 +48,13 @@ export class MainPage{
         }
         )
     }
+
     chatChosen() {
-        chat_chosen = document.getElementById("chat-sel").value
-        if (chosen_rendered){
-            this.getData(chat_chosen, false)
+        this.chat_chosen = document.getElementById("chat-sel").value
+        document.getElementById("main-page").innerHTML = ''
+        if (this.chosen_rendered===false){
+            this.getData(this.chat_chosen)
         }
-        this.render()
     }
     
     render() {

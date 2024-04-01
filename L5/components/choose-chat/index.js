@@ -1,6 +1,4 @@
-import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
-import {chat_chosen} from "../../pages/main/index.js";
 import { fetch_obj } from "../../modules/fetch_logic.js";
 
 export class ChooseChatComponent {
@@ -47,11 +45,11 @@ export class ChooseChatComponent {
         const html = this.getHTML(data)
         this.parent.insertAdjacentHTML('beforebegin', html)
         this.addListeners(listener)
-        if (chat_chosen!=0){
+        if (this.parent.chosen_rendered===false){
             document.getElementById("chat-sel").value = chat_chosen
-            this.parent_obj.getData(chat_chosen, true)
+            this.parent.chosen_rendered = true
+            this.parent_obj.getData(chat_chosen)
         }
-        
     }
     render(listener) {
         this.getData(listener)

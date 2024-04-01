@@ -1,7 +1,6 @@
 import {ProductComponent} from "../../components/product/index.js";
 import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
-import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
 import { send_msg } from "../../components/send-msg/index.js";
 import { fetch_obj } from "../../modules/fetch_logic.js";
@@ -14,9 +13,9 @@ export class ProductPage {
     }
 
     getData(){
-        const data = fetch_obj.get(urls.getUserInfo(this.id))
+        fetch_obj.get(urls.getUserInfo(this.id))
         .then((result)=>{
-            this.renderData(result.items[0])
+            this.renderData(result[0])
         })
     }
 
@@ -38,6 +37,7 @@ export class ProductPage {
     }
 
     clickBack() {
+        document.getElementById("product-page").innerHTML = ''
         const mainPage = new MainPage(this.parent)
         mainPage.render()
     }
@@ -45,7 +45,7 @@ export class ProductPage {
     render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
-        this.parent.insertAdjacentHTML('beforebegin', html)
+        this.parent.insertAdjacentHTML('beforeend', html)
     
         const backButton = new BackButtonComponent(this.pageRoot)
         backButton.render(this.clickBack.bind(this))

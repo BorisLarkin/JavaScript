@@ -1,4 +1,3 @@
-import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
 import { fetch_obj } from "../../modules/fetch_logic.js";
 
@@ -19,7 +18,7 @@ export class send_msg {
                     <label for="messagebox" class="form-label">Написать сообщение ID: ${this.user_id} от лица сообщества:</label>
                     <textarea class="form-control" id="messagebox" placeholder="Введите сообщение..." rows="3"></textarea>
                 </div>
-                <button type="button" class="btn btn-primary" id="send-msg-btn" style="margin-left: 10px;>Отправить сообщение</button>
+                <button type="button" class="btn btn-primary" id="send-msg-btn" style="margin-left: 10px;">Отправить сообщение</button>
         `
         )
     }
