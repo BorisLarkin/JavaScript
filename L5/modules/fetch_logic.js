@@ -9,7 +9,7 @@ class Fetch {
       return result.response;
     } catch (error) {
       return 0;
-    } finally{loading_page.set_visibility(false)}
+    }finally{loading_page.set_visibility(false)}
   }
 }
 
