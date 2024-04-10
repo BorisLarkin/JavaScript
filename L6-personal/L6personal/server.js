@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 
 const app = express(); // 1
@@ -19,7 +21,7 @@ app.listen(port, host, () => { // 3
 });
 
 const readJson = (fileName) => {
-    const file = fs.readFileSync(path.join(__dirname, fileName), "utf8");
+    const file = fs.readFileSync(path.join(__dirname, 'db', fileName), "utf8");
     const json = JSON.parse(file);
     return json;
 };

@@ -20,11 +20,6 @@ export class MainPage{
             `
         )
     }
-        
-    getData() {
-        const Data = fetch_obj.get(urls.getCourses())
-        return Data
-    }
     
     clickCard(subjectPage) {
         subjectPage.render()
@@ -35,11 +30,12 @@ export class MainPage{
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
         
-        const data = this.getData()
-        data.forEach((item) => {
-            const subjectCard = new SubjectCardComponent(this.pageRoot)
-            const subjectPage = new SubjectPage(this.parent, item)
-            subjectCard.render(item, this.clickCard.bind(this, subjectPage))
+        fetch_obj.get(urls.getCourses()).then((result) => {
+            result.forEach((item) => {
+                const subjectCard = new SubjectCardComponent(this.pageRoot)
+                const subjectPage = new SubjectPage(this.parent, item)
+                subjectCard.render(item, this.clickCard.bind(this, subjectPage))
+            })
         })
     }
 }

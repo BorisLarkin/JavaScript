@@ -1,6 +1,6 @@
 const express = require('express');
 
-const stocks = require('./internal/stocks');
+const courses = require('./internal/courses');
 
 const app = express();
 
@@ -9,7 +9,7 @@ const port = 8000;
 
 app.use(express.json());
 
-app.use('/stocks', stocks);
+app.use('/courses', courses);
 
 app.listen(port, host, () => {
     console.log(`Сервер запущен по адресу http://${host}:${port}`);

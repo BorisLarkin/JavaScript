@@ -3,10 +3,10 @@ class Fetch {
     try {
       let resp = await fetch(url);
       let result = await resp.json();
-      return result.response;
+      return result;
     } catch (error) {
       return 0;
-    }
+    }finally{}
   }
   post = async(url, content) =>{ //Can only be AddCourse
     try {
@@ -15,21 +15,21 @@ class Fetch {
         body: JSON.stringify(content)
       });
       let result = await resp.json();
-      return result.response;
+      return result;
     } catch (error) {
       return 0;
-    }
+    }finally{}
   }
-  delete = async(url, courseID) =>{
+  delete = async(url) =>{
     try {
       let resp = await fetch(url, {
         method: 'DELETE',
       });
       let result = await resp.json();
-      return result.response;
+      return result;
     } catch (error) {
       return 0;
-    }
+    }finally{}
   }
 }
 
