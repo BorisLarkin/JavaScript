@@ -32,19 +32,19 @@ function rle_encode(input) {
     var result = [];
     var arr = getElementByType(input, "decoded"); //get normal string from.json
     var curr_counter = 1;
-    var buffer = new Array(buffer_bits);
-    buffer[0] = arr[0]; //consider the [0] checked
+    var buffer_index = 0;
+    var rep_buffer_index = 0;
+    var buffer = new Array(2*buffer_bits); //so as to be able to check sequences 2 times the len on resemblence
+    var repeat_buffer = new Array(buffer_bits);
 
-    for (var i = 1; i <= arr.length; i++) {
-        if (arr[i] == prev_element && curr_counter < max_sequence) {
-            curr_counter++;
+    for (var i = 0; i <= arr.length; i++) {
+        buffer[buffer_index] = arr[i];
+        buffer_index++;
+        if (buffer_index === 2*buffer_bits+1) //things went south
+        {
+
         }
-        else {
-            result.push(curr_counter);
-            result.push(prev_element);
-            prev_element = arr[i];
-            curr_counter = 1;
-        }
+        
     }
     return result;
 }
