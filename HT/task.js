@@ -1,5 +1,6 @@
 const fs = require('fs');
-const max_sequence = 9
+const amount_bits = 6
+const buffer_bits = 8-amount_bits
 
 function readFile(filename) {
     const file = fs.readFileSync(path.join(process.cwd(), filename), "utf8");
@@ -31,7 +32,9 @@ function rle_encode(input) {
     var result = [];
     var arr = getElementByType(input, "decoded"); //get normal string from.json
     var curr_counter = 1;
-    var prev_element = arr[0]; //consider the [0] checked
+    var buffer = new Array(buffer_bits);
+    buffer[0] = arr[0]; //consider the [0] checked
+
     for (var i = 1; i <= arr.length; i++) {
         if (arr[i] == prev_element && curr_counter < max_sequence) {
             curr_counter++;
@@ -43,11 +46,7 @@ function rle_encode(input) {
             curr_counter = 1;
         }
     }
-    return prettyPrint(result);
-}
-
-function prettyPrint(rleData) {
-    return [...rleData].join("");
+    return result;
 }
 
 function rle_decode(filename){
