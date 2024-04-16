@@ -13,7 +13,7 @@ export class LoadingPage {
             `
                 <div id="loading-page" style="width: 100%, height: 100%">
                     <img src="https://i.yapx.cc/XFv9Z.gif" style="position: absolute; left: 18%; top:10%"alt="Currently loading...">
-                    <h1 style="margin-top: 20px; position: absolute; left: 47%; top: 75%">Loading...</h1>
+                    <h1 style="margin-top: 20px; position: absolute; left: 47%; top: 85%">Loading...</h1>
                 </div>
             `
         )
