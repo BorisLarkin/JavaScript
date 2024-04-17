@@ -3,7 +3,11 @@ const {CoursesService} = require('./CoursesService');
 class CoursesController {
     static findCourses(req, res) {
         try {
-            res.send(CoursesService.findCourses());
+            var asc = req.query.ascending;
+            var alpha = req.query.alphabet;
+            if (asc===null){asc={}} //default
+            if (alpha===null){alpha={}} //default
+            res.send(CoursesService.findCourses(asc, alpha));
         } catch (err) {
             res.status(400).send({status: 'Bad Request', message: err.message})
         }
@@ -12,7 +16,7 @@ class CoursesController {
     static findCourseById(req, res) {
         try {
             const id = Number.parseInt(req.params.id);
-            res.send(CoursesService.findCourses(id))
+            res.send(CoursesService.findCourse(id))
         } catch (err) {
             res.status(400).send({status: 'Bad Request', message: err.message})
         }

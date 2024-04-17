@@ -1,14 +1,21 @@
 const {CourseDAO} = require('./CourseDAO');
 
 class CoursesService {
-    static findCourses(id) {
-        if (id !== undefined) {
-            return CourseDAO.findById(id).toJSON();
+    static findCourses(asc, alpha) {
+        var result = CourseDAO.find().map((course) => course.toJSON());
+        if (alpha===true){
+            result.sort((a,b) => {
+                a.title.localeCompare(b.title);
+            })
         }
-
-        return CourseDAO.find().map((course) => course.toJSON());
+        if (asc===false){
+            result.reverse();
+        }
+        return result;
     }
-
+    static findCourse(id){
+        return CourseDAO.findById(id).toJSON();
+    }
     static addCourse(course) {
         return CourseDAO.insert(course).toJSON();
     }
