@@ -5,7 +5,7 @@ class CoursesService {
         var result = CourseDAO.find().map((course) => course.toJSON());
         if (alpha===true){
             result.sort((a,b) => {
-                a.title.localeCompare(b.title);
+                (a.title).localeCompare(b.title);
             })
         }
         if (asc===false){
