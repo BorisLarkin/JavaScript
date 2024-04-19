@@ -88,39 +88,59 @@ function rle_encode(input) {
         }
     }
     //process the remnants of buffer
-    finish:{
-        if (buffer.length===0){break finish;}
-        if (buffer.length===1){
-            service_byte=get_service_byte(1,1);
-            result.push(to_string(service_byte));
-            result.push(buffer.shift());
-            break finish;
+    while (true){ //break the loop when neccesary
+        if (buffer.length===0){break;}
+        if (rep_buffer_length===0){
+            if (buffer.length===1){
+                service_byte=get_service_byte(1,1);
+                result.push(to_string(service_byte));
+                result.push(buffer.shift());
+                break;
+            }
+            find_repeat:{
+                for (var len=1; len < buffer.length/2; len++){
+                    if (buffer.slice(0,len) === buffer.slice(len,len+len)){
+                        repeat_buffer = new Array(len);
+                        for (j=0;j<len;j++){repeat_buffer[j]=buffer.shift();} //first sequence gone
+                        for (k=0;k<len;k++){buffer.shift();} //second gone
+                        buffer_index -= 2*len;
+                        curr_counter+=2;
+                        rep_buffer_length = repeat_buffer.length; //take in the len of curr_rep_buffer
+                        break find_repeat;
+                    }
+                }
+                service_byte = get_service_byte(1,1);
+                result.push(to_string(service_byte));
+                result.push(buffer.shift());
+            }
         }
-        find_repeat:{
-            for (var len=1; len < buffer.length/2; len++){
-                if (buffer.slice(0,len) === buffer.slice(len,len+len)){
-                    repeat_buffer = new Array(len);
-                    for (j=0;j<len;j++){repeat_buffer[j]=buffer.shift();} //first sequence gone
-                    for (k=0;k<len;k++){buffer.shift();} //second gone
-                    buffer_index -= 2*len;
-                    curr_counter+=2;
-                    rep_buffer_length = repeat_buffer.length; //take in the len of curr_rep_buffer
-                    break find_repeat;
+        else{
+            if (buffer_index>=rep_buffer_length){ 
+                if (buffer.slice(0,rep_buffer_length) === repeat_buffer) {
+                    for (z=0;z<rep_buffer_length;z++){buffer.shift();} //second gone
+                    buffer_index -= rep_buffer_length;
+                    curr_counter++;
+                }
+                else{
+                    service_byte=get_service_byte(curr_counter, rep_buffer_length)
+                    result.push(to_string(service_byte));
+                    while (repeat_buffer.length>0) result.push(buffer.shift());
+                    rep_buffer_length=repeat_buffer.length; //0
+                    curr_counter = 0;
                 }
             }
-            service_byte = get_service_byte(1,1);
-            result.push(to_string(service_byte));
-            result.push(buffer.shift());
         }
-        continue finish;
     }
     return result;
 }
 
 function rle_decode(filename){
     var result = "";
-    for (var i = 0; i < data.length - 1; i++) {
-        var n = data[i];
+    var rep_string="";
+    string_index=0;
+    data =  []
+    while (string_index<data.length) {
+        
         var letter = data[i + 1];
         result += letter.repeat(n); // coercion to number
         i++;
@@ -130,6 +150,7 @@ function rle_decode(filename){
 
 function main(){
     rle_encode("test.json");
+    rle_decode("test.json");
 }
 
 alert(main())
