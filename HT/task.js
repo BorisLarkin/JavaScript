@@ -1,11 +1,10 @@
-const fs = require('fs');
-const { stringify } = require('querystring');
+const { writeFileSync, readFileSync } = require('fs');
 const amount_bits = 6
 const buffer_bits = (8-amount_bits);
 const buffer_len = 2**buffer_bits;
 
 function readFile(filename) {
-    const file = fs.readFileSync(path.join(process.cwd(), filename), "utf8");
+    const file = readFileSync(filename, "utf8");
     return JSON.parse(file);
 }
 
@@ -24,7 +23,7 @@ function to_binary(input) { //get binary from string
 
 function to_string(input) { //get string from bin
     var output = "";
-    input.map(function(bin) {
+    input.map(function(bin) { //error
         output += String.fromCharCode(parseInt(bin, 2));
     });
     return output;
@@ -33,14 +32,15 @@ function to_string(input) { //get string from bin
 function get_service_byte(amount, len){ //returns a binary string for a char
     var service_byte ="";
     service_byte+=(to_binary(amount))
+    service_byte = service_byte.split("")
     for (var seq_b=0; seq_b<(8-amount_bits);seq_b++){service_byte.shift()}
-    service_byte+=(to_binary(len)).slice(amount_bits,8)
+    service_byte=service_byte.concat((to_binary(len)).slice(amount_bits,8).split(""))
     return service_byte;
 }
 
 function rle_encode(input) {
     var result = [];
-    var arr = getElementByType(input, "decoded"); //get normal string from.json
+    var arr = input //get normal string from.json
     var curr_counter = 0;
     var buffer_index = 0;
     var buffer = new Array(2*buffer_bits); //so as to be able to check sequences 2 times the len on resemblence
@@ -164,8 +164,22 @@ function rle_decode(input){ //encoded string
 
 function main(){
     var filename="test.json"
-    rle_encode(getElementByType(readFile(filename),"decoded"));
-    //rle_decode("test.json");
+    var dec_content =  getElementByType(readFile(filename),"decoded")[0]
+    
+    var enc_data = {
+        type: "encoded", 
+        content: rle_encode(dec_content.content)
+    }
+
+    console.log(dec_content.content)
+
+    var dec_data = {
+        type: "decoded", 
+        content: rle_decode(enc_data.content)
+    }
+
+    writeFileSync(filename,JSON.stringify(enc_data,null))
+    writeFileSync(filename,JSON.stringify(dec_data,null))
 }
 
-alert(main())
+main();
