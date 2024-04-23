@@ -1,6 +1,8 @@
 const fs = require('fs');
+const { stringify } = require('querystring');
 const amount_bits = 6
-const buffer_bits = 2**(8-amount_bits);
+const buffer_bits = (8-amount_bits);
+const buffer_len = 2**buffer_bits;
 
 function readFile(filename) {
     const file = fs.readFileSync(path.join(process.cwd(), filename), "utf8");
@@ -134,23 +136,36 @@ function rle_encode(input) {
     return result;
 }
 
-function rle_decode(filename){
+function rle_decode(input){ //encoded string
     var result = "";
     var rep_string="";
     string_index=0;
-    data =  []
-    while (string_index<data.length) {
-        
-        var letter = data[i + 1];
-        result += letter.repeat(n); // coercion to number
-        i++;
+    var rep_amount = 0
+    var rep_len=0
+    var service_byte=""
+    var rep_sub=""
+    while (string_index<input.length) {
+        rep_sub=""
+        service_byte = to_binary(input[string_index])
+
+        rep_amount=to_string('0'*buffer_bits+service_byte.slice(0,amount_bits))
+        rep_len = to_string('0'*amount_bits+service_byte.slice(amount_bits,8))
+
+        string_index++;
+        for (var i=0;i<rep_len;i++){
+            rep_sub+=input[string_index]
+            string_index++;
+        }
+        //string_index stays on the next service byte
+        result += rep_sub*rep_amount; // full sequence
     }
     return result;
 }
 
 function main(){
-    rle_encode("test.json");
-    rle_decode("test.json");
+    var filename="test.json"
+    rle_encode(getElementByType(readFile(filename),"decoded"));
+    //rle_decode("test.json");
 }
 
 alert(main())
