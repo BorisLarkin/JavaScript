@@ -39,18 +39,25 @@ Array.prototype.equals = function (array) {
     return true;
 }
 
-function to_binary(input) { //get binary from string 
-    var output = "";
-    var inp_arr=Array.from(input)
-    for (var i = 0; i < inp_arr.length; i++) {
-        output += inp_arr[i].charCodeAt(0).toString(2);
+function string_to_binary(inp) { //get binary from string 
+    function zeroPad(num) {
+        return "00000000".slice(String(num).length) + num;
     }
-    return output
+
+    return inp.replace(/[\s\S]/g, function(str) {
+        str = zeroPad(str.charCodeAt().toString(2));
+        return !1 == spaceSeparatedOctets ? str : str
+    });
 }
 
-function to_string(input) { //get string from bin
+function dec2bin(dec) {
+    return (dec >>> 0).toString(2);
+}
+
+function to_string(inp) { //get string from bin
     var output = "";
-    var inp_arr=Array.from(input)
+    var input = String(inp)
+    var inp_arr=input.split("")
     inp_arr.map(function(bin) { //error
         output += String.fromCharCode(parseInt(bin, 2));
     });
@@ -59,10 +66,9 @@ function to_string(input) { //get string from bin
 
 function get_service_byte(amount, len){ //returns a binary string for a char
     var service_byte ="";
-    service_byte+=(to_binary(amount))
-    service_byte = service_byte.split("")
-    for (var seq_b=0; seq_b<(8-amount_bits);seq_b++){service_byte.shift()}
-    service_byte=service_byte.concat((to_binary(len)).slice(amount_bits,8).split(""))
+    //cant be less than 1
+    service_byte+=(string_to_binary(amount-1))
+    service_byte+=string_to_binary(len-1)
     return service_byte;
 }
 
@@ -153,8 +159,7 @@ function rle_encode(input) {
                 else{
                     service_byte=get_service_byte(curr_counter, rep_buffer_length)
                     result.push(to_string(service_byte));
-                    while (repeat_buffer.length>0) result.push(buffer.shift());
-                    rep_buffer_length=repeat_buffer.length; //0
+                    rep_buffer_length=0; //0
                     curr_counter = 0;
                 }
             }
@@ -171,10 +176,10 @@ function rle_decode(inp_str){ //encoded string
     var rep_len=0
     var service_byte=""
     var rep_sub=""
-    var input = Array.from(inp_str)
+    var input = inp_str.split("")
     while (string_index<input.length) {
         rep_sub=""
-        service_byte = to_binary(input[string_index])
+        service_byte = string_to_binary(input[string_index])
 
         rep_amount=to_string('0'*buffer_bits+service_byte.slice(0,amount_bits))
         rep_len = to_string('0'*amount_bits+service_byte.slice(amount_bits,8))
