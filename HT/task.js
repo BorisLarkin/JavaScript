@@ -39,14 +39,15 @@ Array.prototype.equals = function (array) {
     return true;
 }
 
-function string_to_binary(inp) { //get binary from string 
+function string_to_binary(input) { //get binary from string 
+    var inp = String(input)
     function zeroPad(num) {
         return "00000000".slice(String(num).length) + num;
     }
 
     return inp.replace(/[\s\S]/g, function(str) {
         str = zeroPad(str.charCodeAt().toString(2));
-        return !1 == spaceSeparatedOctets ? str : str
+        return str
     });
 }
 
