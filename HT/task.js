@@ -168,7 +168,7 @@ function rle_decode(inp_str){ //encoded string
 function main(){
     var filename="test.json"
     var dec_content =  getElementByType(readFile(filename),"decoded")[0]
-    
+    console.log(dec_content.content)
     var enc_data = {
         type: "encoded", 
         content: rle_encode(dec_content.content)
@@ -180,9 +180,10 @@ function main(){
         type: "decoded", 
         content: rle_decode(enc_data.content)
     }
-
-    writeFileSync(filename,JSON.stringify(enc_data))
-    writeFileSync(filename,JSON.stringify(dec_data))
+    var result = new Array
+    result.push(enc_data)
+    result.push(dec_data)
+    writeFileSync(filename,JSON.stringify(result))
 }
 
 main();
