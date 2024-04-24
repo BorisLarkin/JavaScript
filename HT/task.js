@@ -181,8 +181,8 @@ function main(){
         content: rle_decode(enc_data.content)
     }
 
-    writeFileSync(filename,JSON.stringify(enc_data,null))
-    writeFileSync(filename,JSON.stringify(dec_data,null))
+    writeFileSync(filename,JSON.stringify(enc_data))
+    writeFileSync(filename,JSON.stringify(dec_data))
 }
 
 main();
