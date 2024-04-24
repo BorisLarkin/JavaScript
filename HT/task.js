@@ -15,15 +15,17 @@ function getElementByType(input, type) //encoded||decoded
 
 function to_binary(input) { //get binary from string 
     var output = "";
-    for (var i = 0; i < input.length; i++) {
-        output += input[i].charCodeAt(0).toString(2);
+    var inp_arr=Array.from(input)
+    for (var i = 0; i < inp_arr.length; i++) {
+        output += inp_arr[i].charCodeAt(0).toString(2);
     }
     return output
 }
 
 function to_string(input) { //get string from bin
     var output = "";
-    input.map(function(bin) { //error
+    var inp_arr=Array.from(input)
+    inp_arr.map(function(bin) { //error
         output += String.fromCharCode(parseInt(bin, 2));
     });
     return output;
@@ -133,10 +135,10 @@ function rle_encode(input) {
             }
         }
     }
-    return result;
+    return result.join();
 }
 
-function rle_decode(input){ //encoded string
+function rle_decode(inp_str){ //encoded string
     var result = "";
     var rep_string="";
     string_index=0;
@@ -144,6 +146,7 @@ function rle_decode(input){ //encoded string
     var rep_len=0
     var service_byte=""
     var rep_sub=""
+    var input = Array.from(inp_str)
     while (string_index<input.length) {
         rep_sub=""
         service_byte = to_binary(input[string_index])
@@ -171,7 +174,7 @@ function main(){
         content: rle_encode(dec_content.content)
     }
 
-    console.log(dec_content.content)
+    console.log(enc_data.content)
 
     var dec_data = {
         type: "decoded", 
