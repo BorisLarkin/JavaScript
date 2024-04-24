@@ -13,6 +13,32 @@ function getElementByType(input, type) //encoded||decoded
     return input.filter(function(input){ if (input.type === type){return input.content}});
 }
 
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+    // if the argument is the same array, we can be sure the contents are same as well
+    if(array === this)
+        return true;
+    // compare lengths - can save a lot of time 
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;       
+        }           
+        else if (this[i] != array[i]) { 
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;   
+        }           
+    }       
+    return true;
+}
+
 function to_binary(input) { //get binary from string 
     var output = "";
     var inp_arr=Array.from(input)
@@ -58,7 +84,7 @@ function rle_encode(input) {
             {
                 find_rep:{
                     for (var len=1; len < buffer_bits+1; len++){
-                        if (buffer.slice(0,len) === buffer.slice(len,len+len)){
+                        if (buffer.slice(0,len).equals(buffer.slice(len,len+len))){
                             repeat_buffer = new Array(len);
                             for (j=0;j<len;j++){repeat_buffer[j]=buffer.shift();} //first sequence gone
                             for (k=0;k<len;k++){buffer.shift();} //second gone
@@ -76,7 +102,7 @@ function rle_encode(input) {
         }
         else{
             if (buffer_index>=rep_buffer_length){ 
-                if (buffer.slice(0,rep_buffer_length) === repeat_buffer) {
+                if (buffer.slice(0,rep_buffer_length).equals(repeat_buffer)) {
                     for (z=0;z<rep_buffer_length;z++){buffer.shift();} //second gone
                     buffer_index -= rep_buffer_length;
                     curr_counter++;
@@ -84,7 +110,7 @@ function rle_encode(input) {
                 else{
                     service_byte=get_service_byte(curr_counter, rep_buffer_length)
                     result.push(to_string(service_byte));
-                    while (repeat_buffer.length>0) result.push(buffer.shift());
+                    while (repeat_buffer.length>0) {result.push(buffer.shift());}
                     rep_buffer_length=repeat_buffer.length; //0
                     curr_counter = 0;
                 }
@@ -103,7 +129,7 @@ function rle_encode(input) {
             }
             find_repeat:{
                 for (var len=1; len < buffer.length/2; len++){
-                    if (buffer.slice(0,len) === buffer.slice(len,len+len)){
+                    if (buffer.slice(0,len).equals(buffer.slice(len,len+len))){
                         repeat_buffer = new Array(len);
                         for (j=0;j<len;j++){repeat_buffer[j]=buffer.shift();} //first sequence gone
                         for (k=0;k<len;k++){buffer.shift();} //second gone
@@ -120,7 +146,7 @@ function rle_encode(input) {
         }
         else{
             if (buffer_index>=rep_buffer_length){ 
-                if (buffer.slice(0,rep_buffer_length) === repeat_buffer) {
+                if (buffer.slice(0,rep_buffer_length).equals(repeat_buffer)) {
                     for (z=0;z<rep_buffer_length;z++){buffer.shift();} //second gone
                     buffer_index -= rep_buffer_length;
                     curr_counter++;
@@ -168,22 +194,23 @@ function rle_decode(inp_str){ //encoded string
 function main(){
     var filename="test.json"
     var dec_content =  getElementByType(readFile(filename),"decoded")[0]
-    console.log(dec_content.content)
+    console.log(dec_content.content) //to change
+
     var enc_data = {
         type: "encoded", 
-        content: rle_encode(dec_content.content)
+        content: rle_encode(dec_content.content) //encoded string
     }
 
     console.log(enc_data.content)
 
     var dec_data = {
         type: "decoded", 
-        content: rle_decode(enc_data.content)
+        content: rle_decode(enc_data.content) //decoded recieved from enc_content
     }
     var result = new Array
     result.push(enc_data)
     result.push(dec_data)
-    writeFileSync(filename,JSON.stringify(result))
+    writeFileSync(filename,JSON.stringify(result, null, 4)) 
 }
 
 main();
