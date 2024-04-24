@@ -71,8 +71,8 @@ function rle_encode(input) {
     var arr = input //get normal string from.json
     var curr_counter = 0;
     var buffer_index = 0;
-    var buffer = new Array(2*buffer_bits); //so as to be able to check sequences 2 times the len on resemblence
-    var repeat_buffer = new Array(buffer_bits);
+    var buffer = new Array; //so as to be able to check sequences 2 times the len on resemblence
+    var repeat_buffer = new Array(buffer_len);
     var rep_buffer_length=0;
     var service_byte="";
 
@@ -80,10 +80,10 @@ function rle_encode(input) {
         buffer[buffer_index] = arr[i];
         buffer_index++;
         if (rep_buffer_length=== 0){
-            if (buffer_index === 2*buffer_bits) //buffer full
+            if (buffer_index === buffer_len) //buffer full
             {
                 find_rep:{
-                    for (var len=1; len < buffer_bits+1; len++){
+                    for (var len=1; len < buffer_len+1; len++){
                         if (buffer.slice(0,len).equals(buffer.slice(len,len+len))){
                             repeat_buffer = new Array(len);
                             for (j=0;j<len;j++){repeat_buffer[j]=buffer.shift();} //first sequence gone
@@ -110,8 +110,7 @@ function rle_encode(input) {
                 else{
                     service_byte=get_service_byte(curr_counter, rep_buffer_length)
                     result.push(to_string(service_byte));
-                    while (repeat_buffer.length>0) {result.push(buffer.shift());}
-                    rep_buffer_length=repeat_buffer.length; //0
+                    rep_buffer_length=0; 
                     curr_counter = 0;
                 }
             }
