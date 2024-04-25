@@ -76,7 +76,7 @@ function rle_encode(input) {
     var rep_buffer_length=0;
     var service_byte="";
 
-    for (var i = 0; i <= arr.length; i++) {
+    for (var i = 0; i < arr.length; i++) {
         buffer[buffer_index] = arr[i];
         buffer_index++;
         if (rep_buffer_length=== 0){
@@ -97,6 +97,7 @@ function rle_encode(input) {
                     service_byte = get_service_byte(1,1);
                     result.push(to_string(service_byte));
                     result.push(buffer.shift());
+                    buffer_index-=1;
                 }
             }
         }
@@ -119,7 +120,6 @@ function rle_encode(input) {
     }
     //process the remnants of buffer
     while (true){ //break the loop when neccesary
-        if (buffer.length===0){break;}
         if (rep_buffer_length===0){
             if (buffer.length===1){
                 service_byte=get_service_byte(1,1);
@@ -160,8 +160,9 @@ function rle_encode(input) {
                 }
             }
         }
+        if (buffer.length===0){break;}
     }
-    return result.join();
+    return result.join('');
 }
 
 function rle_decode(inp_str){ //encoded string
