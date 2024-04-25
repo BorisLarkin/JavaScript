@@ -39,20 +39,13 @@ Array.prototype.equals = function (array) {
     return true;
 }
 
-function string_to_binary(input) { //get binary from string 
-    var inp = String(input)
-    function zeroPad(num) {
-        return "00000000".slice(String(num).length) + num;
-    }
-
-    return inp.replace(/[\s\S]/g, function(str) {
-        str = zeroPad(str.charCodeAt().toString(2));
-        return str
-    });
+function dec2bin(dec, len) {
+    const num = (dec >>> 0).toString(2)
+    return ("0".repeat(len-num.length))+num; //logical disjunction with a mask
 }
 
-function dec2bin(dec) {
-    return (dec >>> 0).toString(2);
+function char2bin(ch) {
+    return ch.charCodeAt(0).toString(2); //logical disjunction with a mask
 }
 
 function to_string(inp) { //get string from bin
@@ -68,8 +61,8 @@ function to_string(inp) { //get string from bin
 function get_service_byte(amount, len){ //returns a binary string for a char
     var service_byte ="";
     //cant be less than 1
-    service_byte+=(string_to_binary(amount-1))
-    service_byte+=string_to_binary(len-1)
+    service_byte+=dec2bin(amount-1, amount_bits)
+    service_byte+=dec2bin(len-1, buffer_bits)
     return service_byte;
 }
 
@@ -117,6 +110,7 @@ function rle_encode(input) {
                 else{
                     service_byte=get_service_byte(curr_counter, rep_buffer_length)
                     result.push(to_string(service_byte));
+                    for (var i=0; i<rep_buffer_length;i++){result.push(repeat_buffer.shift());}
                     rep_buffer_length=0; 
                     curr_counter = 0;
                 }
@@ -160,6 +154,7 @@ function rle_encode(input) {
                 else{
                     service_byte=get_service_byte(curr_counter, rep_buffer_length)
                     result.push(to_string(service_byte));
+                    for (var i=0; i<rep_buffer_length;i++){result.push(repeat_buffer.shift());}
                     rep_buffer_length=0; //0
                     curr_counter = 0;
                 }
@@ -180,7 +175,7 @@ function rle_decode(inp_str){ //encoded string
     var input = inp_str.split("")
     while (string_index<input.length) {
         rep_sub=""
-        service_byte = string_to_binary(input[string_index])
+        service_byte = char2bin(input[string_index])
 
         rep_amount=to_string('0'*buffer_bits+service_byte.slice(0,amount_bits))
         rep_len = to_string('0'*amount_bits+service_byte.slice(amount_bits,8))
