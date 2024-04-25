@@ -79,11 +79,10 @@ function rle_encode(input) {
     for (var i = 0; i < arr.length; i++) {
         buffer[buffer_index] = arr[i];
         buffer_index++;
-        if (rep_buffer_length=== 0){
-            if (buffer_index === buffer_len) //buffer full
-            {
-                find_rep:{
-                    for (var len=1; len < buffer_len+1; len++){
+        encoding:{
+            if (rep_buffer_length===0 | (i==arr.length-1)){
+                find_repeat:{
+                    for (var len=1; len <= buffer.length/2; len++){
                         if (buffer.slice(0,len).equals(buffer.slice(len,len+len))){
                             repeat_buffer = new Array(len);
                             for (j=0;j<len;j++){repeat_buffer[j]=buffer.shift();} //first sequence gone
@@ -91,76 +90,36 @@ function rle_encode(input) {
                             buffer_index -= 2*len;
                             curr_counter+=2;
                             rep_buffer_length = repeat_buffer.length; //take in the len of curr_rep_buffer
-                            break find_rep;
+                            break find_repeat;
                         }
                     }
-                    service_byte = get_service_byte(1,1);
-                    result.push(to_string(service_byte));
-                    result.push(buffer.shift());
-                    buffer_index-=1;
-                }
-            }
-        }
-        else{
-            if (buffer_index>=rep_buffer_length){ 
-                if (buffer.slice(0,rep_buffer_length).equals(repeat_buffer)) {
-                    for (z=0;z<rep_buffer_length;z++){buffer.shift();} //second gone
-                    buffer_index -= rep_buffer_length;
-                    curr_counter++;
-                }
-                else{
-                    service_byte=get_service_byte(curr_counter, rep_buffer_length)
-                    result.push(to_string(service_byte));
-                    for (var ind=0; ind<rep_buffer_length;ind++){result.push(repeat_buffer.shift());}
-                    rep_buffer_length=0; 
-                    curr_counter = 0;
-                }
-            }
-        }
-    }
-    //process the remnants of buffer
-    while (true){ //break the loop when neccesary
-        if (rep_buffer_length===0){
-            if (buffer.length===1){
-                service_byte=get_service_byte(1,1);
-                result.push(to_string(service_byte));
-                result.push(buffer.shift());
-                break;
-            }
-            find_repeat:{
-                for (var len=1; len < buffer.length/2; len++){
-                    if (buffer.slice(0,len).equals(buffer.slice(len,len+len))){
-                        repeat_buffer = new Array(len);
-                        for (j=0;j<len;j++){repeat_buffer[j]=buffer.shift();} //first sequence gone
-                        for (k=0;k<len;k++){buffer.shift();} //second gone
-                        buffer_index -= 2*len;
-                        curr_counter+=2;
-                        rep_buffer_length = repeat_buffer.length; //take in the len of curr_rep_buffer
-                        break find_repeat;
+                    if (buffer.length>=2*buffer_len | (i==arr.length-1)){
+                        service_byte = get_service_byte(1,1);
+                        result.push(to_string(service_byte));
+                        result.push(buffer.shift());
+                        buffer_index--;
                     }
                 }
-                service_byte = get_service_byte(1,1);
-                result.push(to_string(service_byte));
-                result.push(buffer.shift());
             }
-        }
-        else{
-            if (buffer_index>=rep_buffer_length){ 
-                if (buffer.slice(0,rep_buffer_length).equals(repeat_buffer)) {
-                    for (z=0;z<rep_buffer_length;z++){buffer.shift();} //second gone
-                    buffer_index -= rep_buffer_length;
-                    curr_counter++;
-                }
-                else{
-                    service_byte=get_service_byte(curr_counter, rep_buffer_length)
-                    result.push(to_string(service_byte));
-                    for (var ind=0; ind<rep_buffer_length;ind++){result.push(repeat_buffer.shift());}
-                    rep_buffer_length=0; //0
-                    curr_counter = 0;
+            else{
+                if (buffer_index>=rep_buffer_length){ 
+                    if (buffer.slice(0,rep_buffer_length).equals(repeat_buffer)) {
+                        for (z=0;z<rep_buffer_length;z++){buffer.shift();} 
+                        buffer_index -= rep_buffer_length;
+                        curr_counter++;
+                    }
+                    else{
+                        service_byte=get_service_byte(curr_counter, rep_buffer_length)
+                        result.push(to_string(service_byte));
+                        for (var ind=0; ind<rep_buffer_length;ind++){result.push(repeat_buffer.shift());}
+                        rep_buffer_length=0; //0
+                        curr_counter = 0;
+                    }
                 }
             }
+            if (buffer.length==0 & rep_buffer_length==0){break;}
+            if (i==arr.length-1) {encoding;}
         }
-        if (buffer.length===0){break;}
     }
     return result.join('');
 }
