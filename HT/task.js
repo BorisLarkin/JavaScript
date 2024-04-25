@@ -79,8 +79,8 @@ function rle_encode(input) {
     for (var i = 0; i < arr.length; i++) {
         buffer[buffer_index] = arr[i];
         buffer_index++;
-        encoding:{
-            if (rep_buffer_length===0 | (i==arr.length-1)){
+        while (true){
+            if (rep_buffer_length===0){
                 find_repeat:{
                     for (var len=1; len <= buffer.length/2; len++){
                         if (buffer.slice(0,len).equals(buffer.slice(len,len+len))){
@@ -116,9 +116,19 @@ function rle_encode(input) {
                         curr_counter = 0;
                     }
                 }
+                else{
+                    if (buffer_index==0){ //end of line
+                        service_byte=get_service_byte(curr_counter, rep_buffer_length)
+                        result.push(to_string(service_byte));
+                        for (var ind=0; ind<rep_buffer_length;ind++){result.push(repeat_buffer.shift());}
+                        rep_buffer_length=0; //0
+                        curr_counter = 0;
+                    }
+                }
             }
             if (buffer.length==0 & rep_buffer_length==0){break;}
-            if (i==arr.length-1) {encoding;}
+            if (i==arr.length-1) {continue;}
+            break;
         }
     }
     return result.join('');
