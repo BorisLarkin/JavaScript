@@ -110,7 +110,7 @@ function rle_encode(input) {
                 else{
                     service_byte=get_service_byte(curr_counter, rep_buffer_length)
                     result.push(to_string(service_byte));
-                    for (var i=0; i<rep_buffer_length;i++){result.push(repeat_buffer.shift());}
+                    for (var ind=0; ind<rep_buffer_length;ind++){result.push(repeat_buffer.shift());}
                     rep_buffer_length=0; 
                     curr_counter = 0;
                 }
@@ -154,7 +154,7 @@ function rle_encode(input) {
                 else{
                     service_byte=get_service_byte(curr_counter, rep_buffer_length)
                     result.push(to_string(service_byte));
-                    for (var i=0; i<rep_buffer_length;i++){result.push(repeat_buffer.shift());}
+                    for (var ind=0; ind<rep_buffer_length;ind++){result.push(repeat_buffer.shift());}
                     rep_buffer_length=0; //0
                     curr_counter = 0;
                 }
