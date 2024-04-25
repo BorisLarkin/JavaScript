@@ -50,12 +50,8 @@ function char2bin(ch) {
 
 function to_string(inp) { //get string from bin
     var output = "";
-    var input = String(inp)
-    var inp_arr=input.split("")
-    inp_arr.map(function(bin) { //error
-        output += String.fromCharCode(parseInt(bin, 2));
-    });
-    return output;
+    output = parseInt(inp, 2);
+    return String.fromCharCode(output);
 }
 
 function get_service_byte(amount, len){ //returns a binary string for a char
