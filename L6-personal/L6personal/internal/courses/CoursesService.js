@@ -3,12 +3,12 @@ const {CourseDAO} = require('./CourseDAO');
 class CoursesService {
     static findCourses(asc, alpha) {
         var result = CourseDAO.find().map((course) => course.toJSON());
-        if (alpha===true){
+        if (alpha=="true"){
             result.sort((a,b) => {
                 (a.title).localeCompare(b.title);
             })
         }
-        if (asc===false){
+        if (asc=="false"){
             result.reverse();
         }
         return result;

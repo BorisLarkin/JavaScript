@@ -5,8 +5,6 @@ class CoursesController {
         try {
             var asc = req.query.ascending;
             var alpha = req.query.alphabet;
-            if (asc===null){asc={}} //default
-            if (alpha===null){alpha={}} //default
             res.send(CoursesService.findCourses(asc, alpha));
         } catch (err) {
             res.status(400).send({status: 'Bad Request', message: err.message})

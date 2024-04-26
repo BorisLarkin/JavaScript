@@ -29,7 +29,7 @@ export class MainPage{
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
-        var params = {alphabet: true, ascending: true}
+        var params = {alphabet: true, ascending: false}
         fetch_obj.get(urls.getCourses(params)).then((result) => {
             result.forEach((item) => {
                 const subjectCard = new SubjectCardComponent(this.pageRoot)
