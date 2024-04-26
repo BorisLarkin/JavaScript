@@ -3,16 +3,6 @@ const amount_bits = 6
 const buffer_bits = (8-amount_bits);
 const buffer_len = 2**buffer_bits;
 
-function readFile(filename) {
-    const file = readFileSync(filename, "utf8");
-    return JSON.parse(file);
-}
-
-function getElementByType(input, type) //encoded||decoded
-{
-    return input.filter(function(input){ if (input.type === type){return input.content}});
-}
-
 Array.prototype.equals = function (array) {
     // if the other array is a falsy value, return
     if (!array)
@@ -161,25 +151,19 @@ function rle_decode(inp_str){ //encoded string
 }
 
 function main(){
-    var filename="test.json"
-    var dec_content =  getElementByType(readFile(filename),"decoded")[0]
-    console.log(dec_content.content) //to change
+    const dec_file="dec_data.txt"
+    const enc_file="enc_data.txt"
+    
+    var dec_content =  readFileSync(dec_file,{encoding: "ascii"})
+    console.log(dec_content) //to change
 
-    var enc_data = {
-        type: "encoded", 
-        content: rle_encode(dec_content.content) //encoded string
-    }
+    var enc_content = rle_encode(dec_content) //encoded string
+    console.log(enc_content)
+    writeFileSync(enc_file, enc_content, {encoding: "ascii"})
 
-    console.log(enc_data.content)
-
-    var dec_data = {
-        type: "decoded", 
-        content: rle_decode(enc_data.content) //decoded recieved from enc_content
-    }
-    var result = new Array
-    result.push(enc_data)
-    result.push(dec_data)
-    writeFileSync(filename,JSON.stringify(result, null, 4)) 
+    enc_content = readFileSync(enc_file, {encoding: "ascii"})
+    dec_content = rle_decode(enc_content)
+    writeFileSync(dec_file, dec_content, {encoding: "ascii"})
 }
 
 main();
