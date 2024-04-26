@@ -41,11 +41,12 @@ Array.prototype.equals = function (array) {
 
 function dec2bin(dec, len) {
     const num = (dec >>> 0).toString(2)
-    return ("0".repeat(len-num.length))+num; //logical disjunction with a mask
+    return ("0".repeat(len-num.length))+num; 
 }
 
 function char2bin(ch) {
-    return ch.charCodeAt(0).toString(2); //logical disjunction with a mask
+    const signif = ch.charCodeAt(0).toString(2);
+    return ("0".repeat(8-signif.length))+signif;
 }
 
 function to_string(inp) { //get string from bin
@@ -53,7 +54,9 @@ function to_string(inp) { //get string from bin
     output = parseInt(inp, 2);
     return String.fromCharCode(output);
 }
-
+function bin2dec(inp){
+    return parseInt(inp,2);
+}
 function get_service_byte(amount, len){ //returns a binary string for a char
     var service_byte ="";
     //cant be less than 1
@@ -143,8 +146,8 @@ function rle_decode(inp_str){ //encoded string
         rep_sub=""
         service_byte = char2bin(input[string_index])
 
-        rep_amount=to_string('0'*buffer_bits+service_byte.slice(0,amount_bits))
-        rep_len = to_string('0'*amount_bits+service_byte.slice(amount_bits,8))
+        rep_amount=bin2dec('0'.repeat(buffer_bits)+service_byte.slice(0,amount_bits))+1
+        rep_len = bin2dec('0'.repeat(amount_bits)+service_byte.slice(amount_bits,8))+1
 
         string_index++;
         for (var i=0;i<rep_len;i++){
@@ -152,7 +155,7 @@ function rle_decode(inp_str){ //encoded string
             string_index++;
         }
         //string_index stays on the next service byte
-        result += rep_sub*rep_amount; // full sequence
+        result += rep_sub.repeat(rep_amount); // full sequence
     }
     return result;
 }
