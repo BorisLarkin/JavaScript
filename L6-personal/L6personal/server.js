@@ -28,11 +28,37 @@ const readJson = (fileName) => {
 
 const storageName = 'courses.json';
 
-app.get('/courses', (req, res) => {
+// app.get('/courses', (req, res) => {
+//     const courses = readJson(storageName);
+//     res.send(courses);
+// });
+app.get('/courses/', (req, res)=>{
     const courses = readJson(storageName);
+    var asc = req.query.ascending;
+    var alpha = req.query.alphabet;
+    if (alpha=="true"){
+        courses.sort((a,b) => {
+            return (a.title).localeCompare(b.title);
+        })
+        if (asc=="false"){
+            courses.reverse();
+        }
+    }
+    else{
+        if (asc=="true"){
+            courses.sort((a,b) => {
+                return a.id - b.id;
+            })
+        }
+        if (asc=="false"){
+            courses.sort((a,b) => {
+                (a.title).localeCompare(b.title);
+            })
+            courses.reverse();
+        }
+    }
     res.send(courses);
-});
-
+})
 app.get('/courses/:id', (req, res) => {
     const id = req.params.id; // 1
     
