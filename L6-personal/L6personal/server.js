@@ -28,10 +28,6 @@ const readJson = (fileName) => {
 
 const storageName = 'courses.json';
 
-// app.get('/courses', (req, res) => {
-//     const courses = readJson(storageName);
-//     res.send(courses);
-// });
 app.get('/courses/', (req, res)=>{
     const courses = readJson(storageName);
     var asc = req.query.ascending;
